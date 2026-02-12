@@ -5,74 +5,7 @@
     padding-bottom: 60px;
  }
 
- /* ================ Category CSS ============= */
- /* Custom Scrollbar Handling */
-.category-slider-wrapper {
-    display: flex;
-    overflow-x: auto;
-    gap: 2rem;
-    padding: 10px 5px 30px 5px; /* Bottom padding for hover float effect */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    /* Hide scrollbar for clean look */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* IE 10+ */
-}
 
-.category-slider-wrapper::-webkit-scrollbar { 
-    display: none; /* Chrome/Safari */
-}
-
-/* Individual Item Styling */
-.category-item {
-    min-width: 140px;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.category-item:hover {
-    transform: translateY(-10px);
-}
-
-.category-item:hover h6 {
-    color: #E62E2E; /* Theme Red on hover */
-}
-
-/* Image Circle Styling */
-.cat-img-box {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto;
-    overflow: hidden;
-    border: 3px solid #E62E2E; /* Theme Red Border */
-    padding: 3px; /* Creates a double border effect with white space */
-    background: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.cat-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-/* Typography & Divider */
-.theme-divider {
-    width: 80px;
-    height: 4px;
-    background-color: #E62E2E;
-    border-radius: 2px;
-}
-
-h6 {
-    color: #000;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    transition: color 0.3s ease;
-}
 
 
 /* ========================
