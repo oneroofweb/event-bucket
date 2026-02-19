@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Listing Page | Event Bucket</title>
+</head>
+
+<body class="bg-light">
+
+    <section class="py-4 bg-light">
+        <div class="container">
+
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb small text-muted">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Home</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Lucknow</a></li>
+                    <li class="breadcrumb-item active text-danger fw-medium" aria-current="page">Balloon Decorators</li>
+                </ol>
+            </nav>
+
+            <h2 class="fw-bold mb-4 text-dark">Popular <span class="text-danger">Balloon Decorators</span> in Lucknow
+            </h2>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <div class="dropdown">
+                    <button class="btn btn-white border shadow-sm rounded-pill px-3 fw-medium text-secondary"
+                        type="button" data-bs-toggle="dropdown">
+                        Relevance <i class="fa-solid fa-caret-down ms-1 text-danger"></i>
+                    </button>
+                    <ul class="dropdown-menu border-0 shadow">
+                        <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
+                        <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
+                        <li><a class="dropdown-item" href="#">Top Rated</a></li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-white border shadow-sm rounded-pill px-3 fw-medium text-secondary">
+                    Ratings <i class="fa-solid fa-caret-down ms-1 text-danger"></i>
+                </button>
+                <button class="btn btn-white border shadow-sm rounded-pill px-3 fw-medium text-secondary">Type</button>
+                <button class="btn btn-outline-danger rounded-pill px-3 fw-medium">
+                    <i class="fa-solid fa-sliders me-1"></i> All Filters
+                </button>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-8">
+
+                    <div class="card listing-card border-0 shadow-sm mb-4 overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-4 position-relative">
+                                <img src="birthday.jpg"
+                                    class="img-fluid h-100 w-100 object-fit-cover" alt="Listing"
+                                    style="min-height: 200px;">
+                                <span
+                                    class="position-absolute top-0 start-0 bg-danger text-white small px-2 py-1 fw-bold rounded-end mt-2">
+                                    <i class="fa-solid fa-crown me-1"></i> Premium
+                                </span>
+                                <div
+                                    class="position-absolute bottom-0 start-0 w-100 p-2 bg-gradient-dark text-white d-flex justify-content-between small">
+                                    <span><i class="fa-regular fa-image me-1"></i> 12 Photos</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-8 p-3 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="fw-bold mb-0 text-dark">Royal Balloon Events & Decor</h5>
+                                    <button class="btn btn-light btn-sm rounded-circle text-danger"><i
+                                            class="fa-regular fa-heart"></i></button>
+                                </div>
+
+                                <div class="mb-2">
+                                    <span class="badge bg-success rounded-1 me-2">4.8 <i
+                                            class="fa-solid fa-star small"></i></span>
+                                    <span class="small text-muted fw-medium">120 Ratings</span>
+                                    <span class="badge bg-light text-danger border border-danger-subtle ms-2">
+                                        <i class="fa-solid fa-bolt me-1"></i>Top Search
+                                    </span>
+                                </div>
+
+                                <p class="small text-muted mb-2">
+                                    <i class="fa-solid fa-location-dot me-1 text-danger"></i> Gomti Nagar, Lucknow •
+                                    <span class="text-success fw-medium">Open Now</span>
+                                </p>
+
+                                <div class="mb-3">
+                                    <span class="badge bg-light text-secondary border fw-normal">Birthday</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Anniversary</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">+3 More</span>
+                                </div>
+
+                                <div class="mt-auto d-flex gap-2">
+                                    <button class="btn btn-danger fw-bold flex-grow-1">
+                                        <i class="fa-solid fa-phone me-2"></i> Call Now
+                                    </button>
+                                    <button class="btn btn-outline-success fw-bold flex-grow-1">
+                                        <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card border-0 shadow-sm mb-4 overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-md-4 position-relative">
+                                <img src="birthday.jpg" class="img-fluid rounded-start" alt="Listing">
+                            </div>
+                            <div class="col-md-8 p-3 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="fw-bold mb-0 text-dark">Dream Big Celebrations</h5>
+                                    <button class="btn btn-light btn-sm rounded-circle text-danger"><i
+                                            class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="badge bg-success rounded-1 me-2">4.5 <i
+                                            class="fa-solid fa-star small"></i></span>
+                                    <span class="small text-muted fw-medium">85 Ratings</span>
+                                    <span class="badge bg-light text-primary border border-primary-subtle ms-2">
+                                        <i class="fa-solid fa-check-circle me-1"></i>Verified
+                                    </span>
+                                </div>
+                                <p class="small text-muted mb-2">
+                                    <i class="fa-solid fa-location-dot me-1 text-danger"></i> Aliganj, Lucknow • <span
+                                        class="text-danger fw-medium">Closed Now</span>
+                                </p>
+                                <div class="mb-3">
+                                    <span class="badge bg-light text-secondary border fw-normal">Balloon Arches</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Theme Decor</span>
+                                </div>
+                                <div class="mt-auto d-flex gap-2">
+                                    <button class="btn btn-danger fw-bold flex-grow-1">
+                                        <i class="fa-solid fa-phone me-2"></i> Call Now
+                                    </button>
+                                    <button class="btn btn-outline-success fw-bold flex-grow-1">
+                                        <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card listing-card border-0 shadow-sm mb-4 overflow-hidden">
+                        <div class="row g-0">
+                             <div class="col-md-4 position-relative">
+                                <img src="birthday.jpg" class="img-fluid rounded-start" alt="Listing">
+                            </div>
+                            <div class="col-md-8 p-3 d-flex flex-column">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="fw-bold mb-0 text-dark">Party Poppers Events</h5>
+                                    <button class="btn btn-light btn-sm rounded-circle text-danger"><i
+                                            class="fa-regular fa-heart"></i></button>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="badge bg-warning text-dark rounded-1 me-2">3.9 <i
+                                            class="fa-solid fa-star small"></i></span>
+                                    <span class="small text-muted fw-medium">40 Ratings</span>
+                                </div>
+                                <p class="small text-muted mb-2">
+                                    <i class="fa-solid fa-location-dot me-1 text-danger"></i> Hazratganj, Lucknow •
+                                    <span class="text-success fw-medium">Open Now</span>
+                                </p>
+                                <div class="mb-3">
+                                    <span class="badge bg-light text-secondary border fw-normal">Kids Party</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                    <span class="badge bg-light text-secondary border fw-normal">Welcome Decor</span>
+                                </div>
+                                <div class="mt-auto d-flex gap-2">
+                                    <button class="btn btn-danger fw-bold flex-grow-1">
+                                        <i class="fa-solid fa-phone me-2"></i> Call Now
+                                    </button>
+                                    <button class="btn btn-outline-success fw-bold flex-grow-1">
+                                        <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 d-none d-lg-block">
+                    <div class="sticky-top" style="top: 100px; z-index: 1;">
+
+                        <div class="card border-0 shadow-sm overflow-hidden mb-3 text-white text-center p-4 position-relative"
+                            style="background: linear-gradient(135deg, #e62e2e, #a01a1a);">
+                            <div class="card-body position-relative z-1">
+                                <h5 class="fw-bold text-white mb-1">Boost Your Business</h5>
+                                <h2 class="fw-bold text-warning mb-3">Get Leads!</h2>
+                                <button class="btn btn-light text-danger fw-bold px-4 rounded-pill shadow-sm">Advertise
+                                    Now</button>
+                            </div>
+                            <div class="position-absolute top-0 end-0 bg-white opacity-10 rounded-circle"
+                                style="width: 150px; height: 150px; margin-top:-50px; margin-right:-50px;"></div>
+                        </div>
+
+                        <div class="card border-0 shadow-sm p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="fw-bold text-muted text-uppercase small mb-0">Sponsored</h6>
+                                <span class="badge bg-light text-dark border">Ad</span>
+                            </div>
+                            <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80"
+                                class="img-fluid rounded mb-3" alt="Ad">
+                            <h6 class="fw-bold text-dark">Elite Event Planners</h6>
+                            <p class="small text-muted mb-2">Premium wedding planning services with 5-star rating.</p>
+                            <button class="btn btn-outline-dark btn-sm w-100 fw-medium">View Profile</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="side-sticky-tabs d-none d-lg-flex flex-column gap-1">
+        <a href="#" class="tab-btn shadow bg-danger text-white">
+            Advertise
+        </a>
+        <a href="#" class="tab-btn shadow bg-dark text-white">
+            Free Listing
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

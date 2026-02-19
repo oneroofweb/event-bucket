@@ -1,23 +1,334 @@
+/* ================= GLOBAL STYLES ================= */
+:root {
+  --primary-color: #e62e2e; /* Brand Red */
+  --dark-color: #1a1a1a;
+  --light-bg: #f8f9fa;
+}
 
+body {
+  font-family: 'Poppins', sans-serif;
+  color: var(--dark-color);
+  background-color: #fff;
+}
 
-.hero-section{
-    padding-top: 60px !important;
-    padding-bottom: 60px;
- }
+/* ================= NAVBAR STYLES ================= */
+.navbar {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  letter-spacing: -0.5px;
+  color: var(--primary-color) !important;
+}
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #555;
+  transition: color 0.3s;
+}
+.nav-link:hover, .nav-link.active {
+  color: var(--primary-color) !important;
+}
 
+/* Navbar Search Input Focus Fix */
+.navbar input::placeholder {
+  font-size: 0.9rem;
+  color: #999;
+}
+.navbar .form-control:focus {
+  background-color: transparent;
+}
 
+/* ================= HERO SECTION STYLES ================= */
+.hero-section {
+  min-height: 85vh; /* Tall hero */
+  position: relative;
+  display: flex;
+  align-items: center;
+}
 
+/* Directory Search Bar */
+.search-bar-container {
+  transition: transform 0.3s ease;
+}
+.search-bar-container:hover {
+  transform: translateY(-2px);
+}
+.search-bar-container input.form-control:focus {
+  box-shadow: none; 
+  background-color: transparent;
+}
+.search-bar-container ::placeholder {
+  color: #999;
+  font-size: 0.95rem;
+}
 
-/* ========================
-MEDIA QUeary
-================================*/
+/* Mobile Search Bar Fixes */
+@media (max-width: 767px) {
+  .search-bar-container {
+      border-radius: 15px !important;
+      padding: 15px !important;
+  }
+  .search-bar-container .input-group {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+  }
+  .search-bar-container .col-md-6 .input-group {
+      border-bottom: none;
+  }
+}
 
-@media (max-width: 768px) {
+/* ================= CATEGORY CARD STYLES ================= */
+.theme-divider {
+  height: 4px;
+  width: 60px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+.category-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.img-zoom-container {
+  height: 200px;
+  overflow: hidden;
+}
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.category-card:hover .card-img-top {
+  transform: scale(1.1);
+}
+.card-body {
+  padding: 1.25rem;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #333;
+}
 
- .hero-cstm-btn{
-    font-size: 14px;
+/* ================= FOOTER STYLES ================= */
+footer {
+  background-color: #111;
+  color: #aaa;
+}
+footer h5 {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+footer a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+footer a:hover {
+  color: var(--primary-color);
+  padding-left: 5px;
+}
+.social-icon {
+  width: 35px;
+  height: 35px;
+  background: rgba(255,255,255,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+.social-icon:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+/* 
+=============================================
+  Hero Search Bar
+=============================================
+*/
+/* ================= DIRECTORY HERO STYLES ================= */
+
+.directory-hero {
+  min-height: 550px; /* Adjust height as needed */
+  padding: 80px 0;
+}
+
+/* Background Overlay (Darkens image for text readability) */
+.bg-overlay {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+}
+
+/* Object Fit Cover Utility (ensures img fills area) */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+/* Heading Style */
+.hero-heading {
+  font-size: clamp(1.8rem, 4vw, 3rem); /* Responsive font size */
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Search Wrapper Style */
+.search-wrapper {
+  max-width: 750px; /* Controls width of search bar */
+  border-radius: 8px !important; /* Slightly rounded corners like sample */
+}
+
+/* Desktop Divider Line logic */
+@media (min-width: 768px) {
+  .border-end-md {
+    border-right: 1px solid #dee2e6; /* Vertical line between inputs */
+    min-width: 250px; /* Fixed width for location part */
+  }
+}
+
+/* Connect Button (Black bg, Yellow text) */
+.connect-btn {
+  background-color: #222;
+  color: #ffc107 !important; /* Bootstrap Warning Yellow */
+  border: 1px solid #444;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.connect-btn:hover {
+  background-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+/* ================= LISTING PAGE STYLES (Red Theme) ================= */
+
+/* 1. Background tweaks */
+.bg-light {
+    background-color: #f4f6f9 !important; /* Cleaner gray */
+}
+
+/* 2. Listing Cards */
+.listing-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 10px !important;
+}
+
+.listing-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+/* 3. Gradient Overlay on Images */
+.bg-gradient-dark {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+/* 4. Filter Buttons */
+.btn-white {
+    background-color: #fff;
+    color: #444;
+    border-color: #e0e0e0;
+    transition: all 0.2s;
+}
+.btn-white:hover {
+    background-color: #fff;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* 5. Custom Outline Danger Button */
+.btn-outline-danger {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-outline-danger:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* 6. Success Button (Whatsapp/Call overrides) */
+.btn-success {
+    background-color: #25D366; /* WhatsApp Green */
+    border-color: #25D366;
+    color: white;
+}
+.btn-success:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+}
+.btn-outline-success {
+    color: #25D366;
+    border-color: #25D366;
+}
+.btn-outline-success:hover {
+    background-color: #25D366;
+    color: white;
+}
+
+/* 7. Side Sticky Tabs (Right edge) */
+.side-sticky-tabs {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1030;
+}
+
+.tab-btn {
+    display: block;
+    writing-mode: vertical-rl; /* Vertical Text */
+    text-orientation: mixed;
+    padding: 15px 10px;
     font-weight: 600;
- }}
+    text-decoration: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
 
- 
+.tab-btn:hover {
+    padding-right: 15px; /* Slide out effect */
+    filter: brightness(1.1);
+}
 
+/* Specific Tab Colors using your vars */
+.bg-danger { background-color: var(--primary-color) !important; }
+.bg-dark { background-color: var(--dark-color) !important; }
+
+/* 
+=====================================
+Fix Listing Card Image Height 
+=====================================*/
+.listing-card img {
+    min-height: 220px; /* Sets a fixed height */
+    width: 100%;   /* Ensures it fills the width */
+    object-fit: cover; /* Crops the image proportionally so it doesn't stretch */
+}
+
+/* Optional: Mobile Adjustment */
+@media (max-width: 768px) {
+    .listing-card img {
+        height: 180px; /* Slightly smaller on mobile if needed */
+    }
+}
