@@ -14,31 +14,90 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-lg bg-white sticky-top py-3 shadow-sm" style="z-index: 1020;">
+    <nav
+      class="navbar navbar-expand-lg bg-white sticky-top py-3 shadow-sm"
+      style="z-index: 1020"
+    >
       <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4" href="index.html" style="font-size: 1.5rem; color: #e62e2e !important;">
+        <a
+          class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4"
+          href="#"
+          style="font-size: 1.5rem; color: #e62e2e !important"
+        >
           <i class="fa-solid fa-champagne-glasses"></i> Event Bucket
         </a>
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+
+        <button
+          class="navbar-toggler border-0 shadow-none"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#mobileMenu"
+        >
           <span class="fa-solid fa-bars-staggered fa-lg text-dark"></span>
         </button>
-        <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100">
-          <form class="d-none d-lg-flex align-items-center border rounded-pill bg-light mx-auto" style="width: 100%; max-width: 600px; padding: 4px;">
+
+        <div
+          class="collapse navbar-collapse d-none d-lg-flex justify-content-end align-items-center w-100"
+        >
+<!-- <form
+            class="d-none d-lg-flex align-items-center border rounded-pill bg-light mx-auto"
+            style="width: 100%; max-width: 600px; padding: 4px"
+          >
             <div class="input-group border-end">
-              <span class="input-group-text bg-transparent border-0 text-danger ps-3 pe-2"><i class="fa-solid fa-location-dot"></i></span>
-              <input type="text" class="form-control bg-transparent border-0 shadow-none fs-6" placeholder="City" value="Lucknow" style="min-width: 100px;">
+              <span
+                class="input-group-text bg-transparent border-0 text-danger ps-3 pe-2"
+              >
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control bg-transparent border-0 shadow-none fs-6"
+                placeholder="City"
+                value="Lucknow"
+                style="min-width: 100px"
+              />
             </div>
+
             <div class="input-group">
-              <span class="input-group-text bg-transparent border-0 text-secondary ps-3 pe-2"><i class="fa-solid fa-magnifying-glass"></i></span>
-              <input type="text" class="form-control bg-transparent border-0 shadow-none fs-6" placeholder="Search for...">
+              <span
+                class="input-group-text bg-transparent border-0 text-secondary ps-3 pe-2"
+              >
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control bg-transparent border-0 shadow-none fs-6"
+                placeholder="Search for..."
+              />
             </div>
-            <button class="btn btn-danger rounded-pill px-4 fw-semibold shadow-sm m-1" type="button" style="background-color: #e62e2e; border:none;">Search</button>
-          </form>
+
+            <button
+              class="btn btn-danger rounded-pill px-4 fw-semibold shadow-sm m-1"
+              type="button"
+              style="background-color: #e62e2e; border: none"
+            >
+              Search
+            </button>
+          </form> -->
+
           <div class="d-flex align-items-center gap-3 ms-4">
-            <a href="#" class="nav-link fw-semibold text-dark d-flex align-items-center gap-1 text-nowrap"><i class="fa-solid fa-plus-circle text-danger"></i> Add Business</a>
+            <a
+              href="#"
+              class="nav-link fw-semibold text-dark d-flex align-items-center gap-1 text-nowrap"
+            >
+              <i class="fa-solid fa-plus-circle text-danger"></i> Add Business
+            </a>
             <div class="vr text-secondary opacity-25"></div>
-            <a href="#" class="nav-link fw-medium text-dark text-nowrap">Login</a>
-            <a href="#" class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap" style="border-color: #e62e2e; color: #e62e2e;">Register</a>
+            <a href="#" class="nav-link fw-medium text-dark text-nowrap"
+              >Login</a
+            >
+            <a
+              href="#"
+              class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap"
+              style="border-color: #e62e2e; color: #e62e2e"
+            >
+              Register
+            </a>
           </div>
         </div>
       </div>
@@ -46,21 +105,52 @@
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
       <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-bold" style="color: #e62e2e;"><i class="fa-solid fa-champagne-glasses me-2"></i>Event Bucket</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">
+          <i class="fa-solid fa-champagne-glasses me-2"></i>Event Bucket
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+        ></button>
       </div>
+
       <div class="offcanvas-body d-flex flex-column">
         <ul class="navbar-nav fs-5 gap-3 mt-3">
-          <li class="nav-item"><a class="nav-link text-dark fw-medium border-bottom pb-2" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link text-dark fw-medium border-bottom pb-2" href="#">Services</a></li>
-          <li class="nav-item"><a class="nav-link text-dark fw-medium border-bottom pb-2" href="#">Categories</a></li>
-          <li class="nav-item"><a class="nav-link text-dark fw-medium border-bottom pb-2" href="#">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
+              >Services</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
+              >Categories</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
+              >Contact</a
+            >
+          </li>
         </ul>
-        <div class="mt-auto d-flex flex-column gap-3 mb-4">
-          <a href="#" class="btn btn-outline-danger w-100 fw-semibold"><i class="fa-solid fa-plus-circle me-2"></i>Add your business</a>
+
+        <div class="mt-5 d-flex flex-column gap-3 mb-4">
+          <a href="#" class="btn btn-outline-danger w-100 fw-semibold">
+            <i class="fa-solid fa-plus-circle me-2"></i>Add your business
+          </a>
           <div class="d-flex gap-2">
             <a href="#" class="btn btn-light w-50 border fw-medium">Login</a>
-            <a href="#" class="btn btn-danger w-50 fw-medium" style="background-color: #e62e2e; border:none;">Register</a>
+            <a
+              href="#"
+              class="btn btn-danger w-50 fw-medium"
+              style="background-color: #e62e2e; border: none"
+              >Register</a
+            >
           </div>
         </div>
       </div>
@@ -131,6 +221,7 @@
                 <button class="nav-link fw-bold" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">Reviews</button>
               </li>
             </ul>
+            
 
             <div class="tab-content" id="detailTabsContent">
               
@@ -147,7 +238,236 @@
                     <div class="col-sm-6 mb-2"><i class="fa-regular fa-clock text-danger me-2"></i> Sunday: 10:00 AM - 5:00 PM</div>
                   </div>
                 </div>
-              </div>
+
+                <div class="card border-0 shadow-sm p-4 mb-4">
+                  <h4 class="fw-bold mb-4">Frequently Asked Questions</h4>
+                  
+                  <div class="accordion custom-accordion" id="faqAccordion">
+                    
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                          1. How far in advance should I book my balloon decoration?
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          We recommend booking at least 1-2 weeks in advance to ensure availability, especially during wedding and festival seasons. However, we do accept short-notice bookings depending on our schedule.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                          2. Do you provide customized themes for kids' birthdays?
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Yes! We specialize in custom themes like Jungle Safari, Cocomelon, Unicorn, Marvel Superheroes, and many more. Just share your idea, and we will bring it to life.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                          3. What is the starting price for room decoration?
+                        </button>
+                      </h2>
+                      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Our basic romantic room decorations or simple birthday setups start at just ₹1,499. Prices vary based on the complexity, number of balloons, and add-ons like foil balloons or neon signs.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                          4. Do you use helium or regular air balloons?
+                        </button>
+                      </h2>
+                      <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          We offer both. Helium balloons are great for ceiling decor as they float, while air-filled balloons are used for arches, pillars, and floor decorations. Let us know your preference!
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+                          5. Is the setup and teardown included in the price?
+                        </button>
+                      </h2>
+                      <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Setup is completely included. Teardown (removal) is usually done by the client, but if you need professional teardown for large events, we provide it for a nominal extra fee.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingSix">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+                          6. How long do the balloon decorations last?
+                        </button>
+                      </h2>
+                      <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Indoors, air-filled balloons can last for several days to a week. Helium balloons typically float for 8-12 hours. Outdoor balloons may degrade faster due to heat and sunlight.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingSeven">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven">
+                          7. Can you decorate outdoor venues or open lawns?
+                        </button>
+                      </h2>
+                      <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Absolutely! We do outdoor setups. However, we use specific heavy-duty frames and double-stuffed balloons to ensure they withstand outdoor elements like mild wind.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingEight">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight">
+                          8. Do you require a deposit to confirm the booking?
+                        </button>
+                      </h2>
+                      <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Yes, we require a 30% advance deposit to block the date and arrange the materials. The remaining balance is paid on the day of the event after setup is complete.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingNine">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine">
+                          9. What happens if balloons pop during the event?
+                        </button>
+                      </h2>
+                      <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          We always bring 10-15% extra balloons to cover any accidental popping during setup. While we use high-quality latex, balloons are fragile, so we advise keeping them away from sharp objects and direct heat.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingTen">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen">
+                          10. Do you provide add-ons like neon signs, flowers, or ring props?
+                        </button>
+                      </h2>
+                      <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                          Yes! We rent out "Happy Birthday" / "Better Together" neon signs, metal ring arches, sequin backdrop panels, and artificial floral arrangements to elevate your decor.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="collapse" id="moreFaqsCollapse">
+                      
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEleven">
+                          <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven">
+                            11. Do you offer eco-friendly or biodegradable balloons?
+                          </button>
+                        </h2>
+                        <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body text-muted small">
+                            Yes, our premium latex balloons are 100% natural and biodegradable, making them environmentally safe when disposed of correctly.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwelve">
+                          <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve">
+                            12. How much time does it take to set up?
+                          </button>
+                        </h2>
+                        <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body text-muted small">
+                            A standard room or ring decor takes about 1.5 to 2 hours. Large-scale events or grand entrances may take 3 to 5 hours. We will confirm the required time during booking.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThirteen">
+                          <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen">
+                            13. Do you provide same-day decoration services?
+                          </button>
+                        </h2>
+                        <div id="collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body text-muted small">
+                            Subject to our availability and material in stock, we do offer same-day emergency decorations. Please call us directly for immediate assistance.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFourteen">
+                          <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen">
+                            14. Can I change my design or theme after booking?
+                          </button>
+                        </h2>
+                        <div id="collapseFourteen" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body text-muted small">
+                            You can modify your theme or colors up to 3 days before the event. Major changes might incur additional costs depending on the materials required.
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item border-bottom-0">
+                        <h2 class="accordion-header" id="headingFifteen">
+                          <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen">
+                            15. What areas in and around Lucknow do you serve?
+                          </button>
+                        </h2>
+                        <div id="collapseFifteen" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                          <div class="accordion-body text-muted small">
+                            We cover all major areas in Lucknow including Gomti Nagar, Aliganj, Hazratganj, and Indira Nagar. We also travel up to 30 km outside the city limits for a small travel fee.
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="text-center mt-4">
+                    <button class="btn btn-outline-danger fw-bold rounded-pill px-4 load-more-btn" type="button" data-bs-toggle="collapse" data-bs-target="#moreFaqsCollapse" aria-expanded="false" aria-controls="moreFaqsCollapse">
+                      Load More FAQs <i class="fa-solid fa-chevron-down ms-1"></i>
+                    </button>
+                  </div>
+                  
+                </div>
+                <div class="card border-0 shadow-sm p-4 mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="fw-bold mb-0">Location & Map</h4>
+                    <a href="https://maps.google.com/?q=Gomti+Nagar+Lucknow" target="_blank" class="btn btn-outline-danger btn-sm fw-medium">
+                      <i class="fa-solid fa-directions me-1"></i> Get Directions
+                    </a>
+                  </div>
+                  
+                  <div class="ratio ratio-21x9 rounded-3 overflow-hidden border">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.877283914118!2d80.99047397519504!3d26.843849963045653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399ce6005505e6b7%3A0xc48f4f2c0695015b!2sGomti%20Nagar%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                  </div>
+                  <p class="text-muted small mt-3 mb-0">
+                    <i class="fa-solid fa-location-dot text-danger me-1"></i> Shop 12, Gomti Nagar Market, Lucknow, Uttar Pradesh 226010
+                  </p>
+                </div>
+                </div>
 
               <div class="tab-pane fade" id="services" role="tabpanel">
                 <div class="card border-0 shadow-sm p-4 mb-4">
@@ -237,8 +557,8 @@
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
     </section>
 
@@ -251,10 +571,11 @@
       <div class="modal-dialog modal-fullscreen">
         <div class="modal-content bg-dark bg-opacity-75" style="backdrop-filter: blur(10px);">
           
-          <button type="button" class="btn btn-danger custom-icon-close rounded-circle shadow d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
-  <i class="bi bi-x-lg"></i>
-</button>
-          
+          <div class="modal-header border-0 position-absolute top-0 end-0 z-3 p-4">
+            <button type="button" class="btn btn-danger custom-icon-close rounded-circle shadow d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
           <div class="modal-body p-0 d-flex align-items-center justify-content-center">
             <div id="galleryCarousel" class="carousel slide w-100 h-100 d-flex align-items-center" data-bs-ride="carousel">
               <div class="carousel-inner text-center">
