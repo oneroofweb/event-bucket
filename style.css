@@ -576,3 +576,129 @@ LUCKNOW PAGE - CSS
 /* Custom Scrollbar */
 .custom-scrollbar::-webkit-scrollbar { width: 5px; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
+
+/* 
+====================================================================
+    Listing HTML Page CSS
+=======================================================================
+*/
+
+      /* --- 1. Filter Scroll Fix (The Magic Trick) --- */
+      /* Yeh code dropdown ko cut hone se bachata hai */
+      .filter-scroll-container {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        align-items: center;
+        /* Dropdown ke liye neeche jagah banayi */
+        padding-bottom: 250px;
+        /* Content ko wapas upar kheecha */
+        margin-bottom: -250px;
+        /* Scrollbar ko chhupana */
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE */
+
+        /* Important: Invisible padding par click neeche pass ho jaye */
+        pointer-events: none;
+      }
+      .filter-scroll-container::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+
+      /* Buttons par click wapas enable karna */
+      .filter-scroll-container .dropdown,
+      .filter-scroll-container > a {
+        pointer-events: auto;
+      }
+
+      /* --- 2. Filter Pills Style --- */
+      .filter-pill {
+        white-space: nowrap;
+        border: 1px solid #e0e0e0;
+        background: #fff;
+        color: #444;
+        font-size: 0.9rem;
+        padding: 6px 16px;
+        border-radius: 50px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+      .filter-pill:hover,
+      .filter-pill.show {
+        background-color: #f8f9fa;
+        border-color: #bbb;
+        color: #000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      }
+      .filter-pill.active-filter {
+        background-color: #fff0f0;
+        border-color: #e62e2e;
+        color: #e62e2e;
+        font-weight: 600;
+      }
+
+      /* --- 3. Sticky Bar Positioning --- */
+      @media (min-width: 992px) {
+        .sticky-filter-bar {
+          top: 70px;
+        }
+      }
+      @media (max-width: 991px) {
+        .sticky-filter-bar {
+          top: 125px;
+        }
+      }
+
+      /* --- 4. Dropdown Styling --- */
+      .custom-dropdown-menu {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important; /* Darker shadow */
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        margin-top: 8px !important;
+        padding: 10px;
+        z-index: 1055; /* Higher than cards */
+      }
+      .list-options {
+        max-height: 250px;
+        overflow-y: auto;
+      }
+
+      .option-link {
+        padding: 8px 12px;
+        text-decoration: none;
+        display: block;
+        color: #444;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        transition: background 0.2s;
+      }
+      .option-link:hover {
+        background-color: #fff5f5;
+        color: #e62e2e;
+      }
+      .option-link.active {
+        background-color: #ffe0e0 !important;
+        color: #c00 !important;
+        font-weight: 600;
+      }
+
+      /* Desktop Search Bar */
+      .desktop-search-bar {
+        border: 1px solid #e0e0e0;
+        transition: box-shadow 0.2s;
+      }
+      .desktop-search-bar:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Custom Scrollbar for Dropdowns */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 10px;
+      }

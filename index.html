@@ -27,18 +27,17 @@
   </head>
   <body>
     <nav
-      class="navbar navbar-expand-lg bg-white sticky-top py-3 shadow-sm"
-      style="z-index: 1020"
+      class="navbar navbar-expand-lg bg-white sticky-top py-2 shadow-sm"
+      style="z-index: 1040"
     >
-      <div class="container">
+      <div class="container-fluid container-lg">
         <a
           class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4"
-          href="#"
+          href="index.html"
           style="font-size: 1.5rem; color: #e62e2e !important"
         >
           <i class="fa-solid fa-champagne-glasses"></i> Event Bucket
         </a>
-
         <button
           class="navbar-toggler border-0 shadow-none"
           type="button"
@@ -49,76 +48,135 @@
         </button>
 
         <div
-          class="collapse navbar-collapse d-none d-lg-flex justify-content-end align-items-center w-100"
+          class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100"
         >
-<!-- <form
-            class="d-none d-lg-flex align-items-center border rounded-pill bg-light mx-auto"
-            style="width: 100%; max-width: 600px; padding: 4px"
+          <div
+            class="mx-auto d-flex align-items-center bg-white rounded-pill px-2 py-1 desktop-search-bar"
+            style="width: 100%; max-width: 550px"
           >
-            <div class="input-group border-end">
-              <span
-                class="input-group-text bg-transparent border-0 text-danger ps-3 pe-2"
+            <div class="dropdown border-end pe-2 me-2">
+              <button
+                class="btn btn-sm border-0 dropdown-toggle fw-semibold text-dark d-flex align-items-center gap-2"
+                type="button"
+                data-bs-toggle="dropdown"
               >
-                <i class="fa-solid fa-location-dot"></i>
-              </span>
+                <i class="fa-solid fa-location-dot text-danger"></i>
+                <span id="desktopNavCity">Lucknow</span>
+              </button>
+              <ul class="dropdown-menu border-0 shadow mt-2">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="updateCity('Lucknow')"
+                    >Lucknow</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    onclick="updateCity('Kanpur')"
+                    >Kanpur</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="input-group border-0">
               <input
                 type="text"
-                class="form-control bg-transparent border-0 shadow-none fs-6"
-                placeholder="City"
-                value="Lucknow"
-                style="min-width: 100px"
+                class="form-control border-0 bg-transparent shadow-none"
+                placeholder="Search decorators, venues..."
               />
-            </div>
-
-            <div class="input-group">
-              <span
-                class="input-group-text bg-transparent border-0 text-secondary ps-3 pe-2"
+              <button
+                class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center p-2"
+                style="width: 35px; height: 35px; background-color: #e62e2e"
               >
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </span>
-              <input
-                type="text"
-                class="form-control bg-transparent border-0 shadow-none fs-6"
-                placeholder="Search for..."
-              />
+                <i class="fa-solid fa-magnifying-glass text-white small"></i>
+              </button>
             </div>
-
-            <button
-              class="btn btn-danger rounded-pill px-4 fw-semibold shadow-sm m-1"
-              type="button"
-              style="background-color: #e62e2e; border: none"
-            >
-              Search
-            </button>
-          </form> -->
-
+          </div>
           <div class="d-flex align-items-center gap-3 ms-4">
-            <a
-              href="#"
-              class="nav-link fw-semibold text-dark d-flex align-items-center gap-1 text-nowrap"
+            <a href="#" class="nav-link fw-semibold text-dark text-nowrap"
+              ><i class="fa-solid fa-plus-circle text-danger"></i> Add
+              Business</a
             >
-              <i class="fa-solid fa-plus-circle text-danger"></i> Add Business
-            </a>
             <div class="vr text-secondary opacity-25"></div>
-            <a href="#" class="nav-link fw-medium text-dark text-nowrap"
-              >Login</a
-            >
             <a
               href="#"
               class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap"
               style="border-color: #e62e2e; color: #e62e2e"
+              >Login</a
             >
-              Register
-            </a>
           </div>
         </div>
       </div>
     </nav>
 
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+    <div
+      class="d-lg-none position-fixed start-0 end-0 bg-white border-bottom shadow-sm px-3 py-2"
+      style="z-index: 1030"
+    >
+      <div class="d-flex gap-2 align-items-center">
+        <div class="dropdown flex-shrink-0">
+          <button
+            class="btn btn-outline-danger rounded-pill btn-sm fw-bold d-flex align-items-center gap-1"
+            type="button"
+            data-bs-toggle="dropdown"
+            style="border-color: #e62e2e; color: #e62e2e; padding: 6px 12px"
+          >
+            <i class="fa-solid fa-location-dot"></i>
+            <span id="mobileSelectedCity">Lucknow</span>
+            <i class="fa-solid fa-caret-down ms-1 small"></i>
+          </button>
+          <ul
+            class="dropdown-menu shadow border-0 mt-1"
+            style="border-radius: 10px"
+          >
+            <li>
+              <a
+                class="dropdown-item small"
+                href="#"
+                onclick="updateCity('Lucknow')"
+                >Lucknow</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item small"
+                href="#"
+                onclick="updateCity('Kanpur')"
+                >Kanpur</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="flex-grow-1">
+          <div class="input-group">
+            <span
+              class="input-group-text bg-light border-end-0 rounded-start-pill ps-3 text-secondary"
+              ><i class="fa-solid fa-magnifying-glass"></i
+            ></span>
+            <input
+              type="text"
+              class="form-control bg-light border-start-0 rounded-end-pill shadow-none small"
+              placeholder="Search..."
+              style="font-size: 0.9rem"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="offcanvas offcanvas-start"
+      tabindex="-1"
+      id="mobileMenu"
+      style="z-index: 1050"
+    >
       <div class="offcanvas-header border-bottom">
         <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">
-          <i class="fa-solid fa-champagne-glasses me-2"></i>Event Bucket
+          Event Bucket
         </h5>
         <button
           type="button"
@@ -126,54 +184,26 @@
           data-bs-dismiss="offcanvas"
         ></button>
       </div>
-
       <div class="offcanvas-body d-flex flex-column">
         <ul class="navbar-nav fs-5 gap-3 mt-3">
           <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Home</a
-            >
+            <a class="nav-link text-dark border-bottom pb-2" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
+            <a class="nav-link text-dark border-bottom pb-2" href="#"
               >Services</a
             >
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Categories</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Contact</a
-            >
-          </li>
         </ul>
-
-        <div class="mt-5 d-flex flex-column gap-3 mb-4">
-          <a href="#" class="btn btn-outline-danger w-100 fw-semibold">
-            <i class="fa-solid fa-plus-circle me-2"></i>Add your business
-          </a>
-          <div class="d-flex gap-2">
-            <a href="#" class="btn btn-light w-50 border fw-medium">Login</a>
-            <a
-              href="#"
-              class="btn btn-danger w-50 fw-medium"
-              style="background-color: #e62e2e; border: none"
-              >Register</a
-            >
-          </div>
-        </div>
       </div>
     </div>
 
     <!-- ================== Search Bar Section ================ -->
-<section class="directory-hero position-relative d-flex align-items-center justify-content-center">
+<!-- <section class="directory-hero position-relative d-flex align-items-center justify-content-center">
   
   <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -2;">
-    <!-- <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2070&q=80&quot;" 
-         alt="Background" class="w-100 object-fit-cover"> -->
+    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2070&q=80&quot;" 
+         alt="Background" class="w-100 object-fit-cover">
   </div>
   <div class="position-absolute top-0 start-0 w-100 h-100 bg-overlay" style="z-index: -1;"></div>
 
@@ -181,9 +211,9 @@
     <div class="row justify-content-center">
       <div class="col-lg-10 col-xl-9">
         
-        <!-- <h1 class="hero-heading fw-bold text-white mb-4">
+        <h1 class="hero-heading fw-bold text-white mb-4">
           Find Top Businesses & Service Providers in <span class="text-warning">Lucknow</span>
-        </h1> -->
+        </h1>
 
         <div class="search-wrapper bg-white p-1 rounded-3 shadow-lg mx-auto mb-4">
           <form class="d-md-flex align-items-center">
@@ -212,16 +242,16 @@
           </form>
         </div>
 
-        <!-- <div>
+        <div>
           <a href="#" class="btn btn-dark connect-btn rounded-pill px-4 py-2 fw-bold text-uppercase">
             Connect with Top Businesses in Lucknow
           </a>
-        </div> -->
+        </div>
 
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
     <!-- <section class="hero-section">
