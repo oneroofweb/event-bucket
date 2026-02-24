@@ -3,1125 +3,388 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-
+    
     <title>Listing Page</title>
     <meta name="robots" content="noindex" />
 
     <style>
-      /* Filter Sidebar Styles */
-      .btn-white {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-        color: #555;
-        transition: all 0.2s;
-        background-color: #fff;
-        border: 1px solid #dee2e6;
+      /* --- 1. Filter Scroll Fix (The Magic Trick) --- */
+      /* Yeh code dropdown ko cut hone se bachata hai */
+      .filter-scroll-container {
+          display: flex;
+          gap: 0.5rem;
+          overflow-x: auto;
+          align-items: center;
+          /* Dropdown ke liye neeche jagah banayi */
+          padding-bottom: 250px; 
+          /* Content ko wapas upar kheecha */
+          margin-bottom: -250px; 
+          /* Scrollbar ko chhupana */
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none;  /* IE */
+          
+          /* Important: Invisible padding par click neeche pass ho jaye */
+          pointer-events: none;
       }
-      .btn-white:hover,
-      .btn-white:focus,
-      .show > .btn-white {
-        border-color: #aaa !important;
-        background-color: #fff !important;
-        color: #333;
-        box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05);
-      }
-      .custom-dropdown-menu {
-        border-radius: 8px;
-        transform: translateY(5px) !important;
-      }
-      .list-options {
-        max-height: 180px;
-        overflow-y: auto;
-      }
-      .option-link {
-        padding: 8px 10px;
-        font-size: 0.9rem;
-        color: #333;
-        border-radius: 4px;
-        margin-bottom: 2px;
-        display: block;
-        text-decoration: none;
-      }
-      .option-link:hover {
-        background-color: #f0fdf4;
-        color: #166534;
-      }
-      .option-link.active {
-        background-color: #dcfce7 !important;
-        color: #15803d !important;
-        font-weight: 600;
-      }
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 5px;
-      }
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #ddd;
-        border-radius: 10px;
+      .filter-scroll-container::-webkit-scrollbar { 
+          display: none; /* Chrome/Safari */
       }
 
-      /* Desktop Search Bar Styles */
-      .desktop-search-bar {
-        border: 1px solid #e0e0e0;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        transition: box-shadow 0.2s;
+      /* Buttons par click wapas enable karna */
+      .filter-scroll-container .dropdown, 
+      .filter-scroll-container > a {
+          pointer-events: auto;
       }
-      .desktop-search-bar:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      /* --- 2. Filter Pills Style --- */
+      .filter-pill {
+          white-space: nowrap;
+          border: 1px solid #e0e0e0;
+          background: #fff;
+          color: #444;
+          font-size: 0.9rem;
+          padding: 6px 16px;
+          border-radius: 50px;
+          transition: all 0.2s ease;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.02);
       }
+      .filter-pill:hover, .filter-pill.show {
+          background-color: #f8f9fa;
+          border-color: #bbb;
+          color: #000;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      }
+      .filter-pill.active-filter {
+          background-color: #fff0f0;
+          border-color: #e62e2e;
+          color: #e62e2e;
+          font-weight: 600;
+      }
+
+      /* --- 3. Sticky Bar Positioning --- */
+      @media (min-width: 992px) {
+          .sticky-filter-bar { top: 70px; } 
+      }
+      @media (max-width: 991px) {
+          .sticky-filter-bar { top: 125px; }
+      }
+
+      /* --- 4. Dropdown Styling --- */
+      .custom-dropdown-menu {
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important; /* Darker shadow */
+          border: 1px solid rgba(0,0,0,0.05);
+          margin-top: 8px !important;
+          padding: 10px;
+          z-index: 1055; /* Higher than cards */
+      }
+      .list-options { max-height: 250px; overflow-y: auto; }
+      
+      .option-link {
+          padding: 8px 12px;
+          text-decoration: none;
+          display: block;
+          color: #444;
+          border-radius: 6px;
+          font-size: 0.95rem;
+          transition: background 0.2s;
+      }
+      .option-link:hover { background-color: #fff5f5; color: #e62e2e; }
+      .option-link.active { background-color: #ffe0e0 !important; color: #c00 !important; font-weight: 600; }
+
+      /* Desktop Search Bar */
+      .desktop-search-bar { border: 1px solid #e0e0e0; transition: box-shadow 0.2s; }
+      .desktop-search-bar:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+
+      /* Custom Scrollbar for Dropdowns */
+      .custom-scrollbar::-webkit-scrollbar { width: 5px; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
     </style>
   </head>
 
   <body class="bg-light">
-    <nav
-      class="navbar navbar-expand-lg bg-white sticky-top py-2 shadow-sm"
-      style="z-index: 1030"
-    >
+
+    <nav class="navbar navbar-expand-lg bg-white sticky-top py-2 shadow-sm" style="z-index: 1040">
       <div class="container-fluid container-lg">
-        <a
-          class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4"
-          href="index.html"
-          style="font-size: 1.5rem; color: #e62e2e !important"
-        >
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4" href="index.html" style="font-size: 1.5rem; color: #e62e2e !important">
           <i class="fa-solid fa-champagne-glasses"></i> Event Bucket
         </a>
-
-        <button
-          class="navbar-toggler border-0 shadow-none"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#mobileMenu"
-        >
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
           <span class="fa-solid fa-bars-staggered fa-lg text-dark"></span>
         </button>
 
-        <div
-          class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100"
-        >
-          <div
-            class="mx-auto d-flex align-items-center bg-white rounded-pill px-2 py-1 desktop-search-bar"
-            style="width: 100%; max-width: 550px"
-          >
+        <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100">
+          <div class="mx-auto d-flex align-items-center bg-white rounded-pill px-2 py-1 desktop-search-bar" style="width: 100%; max-width: 550px;">
             <div class="dropdown border-end pe-2 me-2">
-              <button
-                class="btn btn-sm border-0 dropdown-toggle fw-semibold text-dark d-flex align-items-center gap-2"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="fa-solid fa-location-dot text-danger"></i>
-                <span id="desktopNavCity">Lucknow</span>
+              <button class="btn btn-sm border-0 dropdown-toggle fw-semibold text-dark d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                <i class="fa-solid fa-location-dot text-danger"></i> <span id="desktopNavCity">Lucknow</span>
               </button>
               <ul class="dropdown-menu border-0 shadow mt-2">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Lucknow')"
-                    >Lucknow</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Kanpur')"
-                    >Kanpur</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Delhi')"
-                    >Delhi</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Mumbai')"
-                    >Mumbai</a
-                  >
-                </li>
+                <li><a class="dropdown-item" href="#" onclick="updateCity('Lucknow')">Lucknow</a></li>
+                <li><a class="dropdown-item" href="#" onclick="updateCity('Kanpur')">Kanpur</a></li>
               </ul>
             </div>
-
             <div class="input-group border-0">
-              <input
-                type="text"
-                class="form-control border-0 bg-transparent shadow-none"
-                placeholder="Search for decorators, venues..."
-              />
-              <button
-                class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center p-2"
-                style="width: 35px; height: 35px; background-color: #e62e2e"
-              >
+              <input type="text" class="form-control border-0 bg-transparent shadow-none" placeholder="Search decorators, venues...">
+              <button class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center p-2" style="width: 35px; height: 35px; background-color: #e62e2e;">
                 <i class="fa-solid fa-magnifying-glass text-white small"></i>
               </button>
             </div>
           </div>
-
           <div class="d-flex align-items-center gap-3 ms-4">
-            <a
-              href="#"
-              class="nav-link fw-semibold text-dark d-flex align-items-center gap-1 text-nowrap"
-              ><i class="fa-solid fa-plus-circle text-danger"></i> Add
-              Business</a
-            >
+            <a href="#" class="nav-link fw-semibold text-dark text-nowrap"><i class="fa-solid fa-plus-circle text-danger"></i> Add Business</a>
             <div class="vr text-secondary opacity-25"></div>
-            <a href="#" class="nav-link fw-medium text-dark text-nowrap"
-              >Login</a
-            >
-            <a
-              href="#"
-              class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap"
-              style="border-color: #e62e2e; color: #e62e2e"
-              >Register</a
-            >
+            <a href="#" class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap" style="border-color: #e62e2e; color: #e62e2e">Login</a>
           </div>
         </div>
       </div>
     </nav>
 
-    <div
-      class="d-lg-none position-fixed start-0 end-0 bg-white border-bottom shadow-sm px-3 py-2"
-      style="z-index: 1015"
-    >
+    <div class="d-lg-none position-fixed start-0 end-0 bg-white border-bottom shadow-sm px-3 py-2" 
+         style="top: 70px; z-index: 1030;">
       <div class="d-flex gap-2 align-items-center">
         <div class="dropdown flex-shrink-0">
-          <button
-            class="btn btn-outline-danger rounded-pill btn-sm fw-bold d-flex align-items-center gap-1"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style="border-color: #e62e2e; color: #e62e2e; padding: 6px 12px"
-          >
-            <i class="fa-solid fa-location-dot"></i>
-            <span id="mobileSelectedCity">Lucknow</span>
-            <i class="fa-solid fa-caret-down ms-1 small"></i>
+          <button class="btn btn-outline-danger rounded-pill btn-sm fw-bold d-flex align-items-center gap-1" 
+                  type="button" data-bs-toggle="dropdown" 
+                  style="border-color: #e62e2e; color: #e62e2e; padding: 6px 12px;">
+            <i class="fa-solid fa-location-dot"></i> <span id="mobileSelectedCity">Lucknow</span> <i class="fa-solid fa-caret-down ms-1 small"></i>
           </button>
-          <ul
-            class="dropdown-menu shadow border-0 mt-1"
-            style="border-radius: 10px"
-          >
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Lucknow')"
-                >Lucknow</a
-              >
-            </li>
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Kanpur')"
-                >Kanpur</a
-              >
-            </li>
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Delhi')"
-                >Delhi</a
-              >
-            </li>
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Mumbai')"
-                >Mumbai</a
-              >
-            </li>
+          <ul class="dropdown-menu shadow border-0 mt-1" style="border-radius: 10px;">
+            <li><a class="dropdown-item small" href="#" onclick="updateCity('Lucknow')">Lucknow</a></li>
+            <li><a class="dropdown-item small" href="#" onclick="updateCity('Kanpur')">Kanpur</a></li>
           </ul>
         </div>
-
         <div class="flex-grow-1">
           <div class="input-group">
-            <span
-              class="input-group-text bg-light border-end-0 rounded-start-pill ps-3 text-secondary"
-            >
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control bg-light border-start-0 rounded-end-pill shadow-none small"
-              placeholder="Search..."
-              style="font-size: 0.9rem"
-            />
+            <span class="input-group-text bg-light border-end-0 rounded-start-pill ps-3 text-secondary"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control bg-light border-start-0 rounded-end-pill shadow-none small" placeholder="Search..." style="font-size: 0.9rem;">
           </div>
         </div>
-
-        <button
-          class="btn btn-light rounded-circle shadow-sm border text-dark d-flex align-items-center justify-content-center"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#filterSidebar"
-          style="width: 38px; height: 38px; flex-shrink: 0"
-        >
-          <i class="fa-solid fa-sliders small"></i>
-        </button>
       </div>
     </div>
 
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="mobileMenu"
-      style="z-index: 1045"
-    >
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" style="z-index: 1050;">
       <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">
-          <i class="fa-solid fa-champagne-glasses me-2"></i>Event Bucket
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-        ></button>
+        <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">Event Bucket</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
       </div>
       <div class="offcanvas-body d-flex flex-column">
         <ul class="navbar-nav fs-5 gap-3 mt-3">
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Services</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Categories</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark fw-medium border-bottom pb-2" href="#"
-              >Contact</a
-            >
-          </li>
+          <li class="nav-item"><a class="nav-link text-dark border-bottom pb-2" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-dark border-bottom pb-2" href="#">Services</a></li>
         </ul>
-        <div class="mt-5 d-flex flex-column gap-3 mb-4">
-          <a href="#" class="btn btn-outline-danger w-100 fw-semibold"
-            ><i class="fa-solid fa-plus-circle me-2"></i>Add your business</a
-          >
-          <div class="d-flex gap-2">
-            <a href="#" class="btn btn-light w-50 border fw-medium">Login</a>
-            <a
-              href="#"
-              class="btn btn-danger w-50 fw-medium"
-              style="background-color: #e62e2e; border: none"
-              >Register</a
-            >
-          </div>
-        </div>
       </div>
     </div>
 
     <section class="py-4 bg-light mt-5 mt-lg-0">
       <div class="container-fluid container-lg">
-        <nav aria-label="breadcrumb" class="mb-3">
+        
+        <nav aria-label="breadcrumb" class="mb-2">
           <ol class="breadcrumb small text-muted">
-            <li class="breadcrumb-item">
-              <a href="index.html" class="text-decoration-none text-muted"
-                >Home</a
-              >
-            </li>
-            <li class="breadcrumb-item">
-              <a href="#" class="text-decoration-none text-muted">Lucknow</a>
-            </li>
-            <li
-              class="breadcrumb-item active text-danger fw-medium"
-              aria-current="page"
-            >
-              Balloon Decorators
-            </li>
+            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Home</a></li>
+            <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-muted">Lucknow</a></li>
+            <li class="breadcrumb-item active text-danger fw-medium">Decorators</li>
           </ol>
         </nav>
+        <h2 class="fw-bold mb-3 text-dark">Popular <span class="text-danger">Balloon Decorators</span> in Lucknow</h2>
 
-        <h2 class="fw-bold mb-4 text-dark">
-          Popular <span class="text-danger">Balloon Decorators</span> in Lucknow
-        </h2>
+        <div class="sticky-filter-bar sticky-top bg-light py-2 mb-4" 
+             style="z-index: 1020; margin-left: -10px; margin-right: -10px; padding-left: 10px; padding-right: 10px;">
+          
+          <div class="filter-scroll-container">
+            
+            <div class="dropdown">
+              <button class="btn filter-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="btnLocality">
+                Locality
+              </button>
+              <div class="dropdown-menu p-2 shadow border-0 custom-dropdown-menu" style="min-width: 240px;">
+                <div class="input-group mb-2 border rounded-1 bg-light">
+                  <input type="text" class="form-control border-0 shadow-none bg-transparent ps-2 dropdown-search" placeholder="Search locality...">
+                </div>
+                <div class="list-options custom-scrollbar">
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnLocality')">Gomti Nagar</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnLocality')">Hazratganj</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnLocality')">Aliganj</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnLocality')">Indira Nagar</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn filter-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="btnRating">
+                Rating
+              </button>
+              <div class="dropdown-menu p-2 shadow border-0 custom-dropdown-menu" style="min-width: 200px;">
+                <div class="list-options">
+                  <a class="option-link d-flex justify-content-between align-items-center" href="#" onclick="selectFilter(this, 'btnRating')">
+                    <span>4.5 & up</span> <span class="text-warning small"><i class="fa-solid fa-star"></i> 4.5+</span>
+                  </a>
+                  <a class="option-link d-flex justify-content-between align-items-center" href="#" onclick="selectFilter(this, 'btnRating')">
+                    <span>4.0 & up</span> <span class="text-warning small"><i class="fa-solid fa-star"></i> 4.0+</span>
+                  </a>
+                  <a class="option-link d-flex justify-content-between align-items-center" href="#" onclick="selectFilter(this, 'btnRating')">
+                    <span>Any Rating</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn filter-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="btnCategory">
+                Category
+              </button>
+              <div class="dropdown-menu p-2 shadow border-0 custom-dropdown-menu">
+                <div class="input-group mb-2 border rounded-1 bg-light">
+                  <input type="text" class="form-control border-0 shadow-none bg-transparent ps-2 dropdown-search" placeholder="Search...">
+                </div>
+                <div class="list-options custom-scrollbar">
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnCategory')">Wedding</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnCategory')">Birthday Party</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnCategory')">Corporate</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn filter-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="btnSubCat">
+                Sub-Category
+              </button>
+              <div class="dropdown-menu p-2 shadow border-0 custom-dropdown-menu">
+                <div class="list-options custom-scrollbar">
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnSubCat')">Balloon Decor</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnSubCat')">Flower Decor</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnSubCat')">Catering</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="dropdown">
+              <button class="btn filter-pill dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="btnSort">
+                <i class="fa-solid fa-arrow-down-wide-short small me-1"></i> Sort
+              </button>
+              <div class="dropdown-menu p-2 shadow border-0 custom-dropdown-menu">
+                <div class="list-options">
+                  <a class="option-link active" href="#" onclick="selectFilter(this, 'btnSort')">Recommended</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnSort')">Top Rated</a>
+                  <a class="option-link" href="#" onclick="selectFilter(this, 'btnSort')">Price: Low to High</a>
+                </div>
+              </div>
+            </div>
+
+            <a href="#" class="text-danger fw-bold text-decoration-none ms-2 small text-nowrap" onclick="location.reload()">Clear All</a>
+
+          </div>
+        </div>
 
         <div class="row">
-          <div class="col-lg-3 d-none d-lg-block">
-            <div class="sticky-top" style="top: 90px; z-index: 1">
-              <div
-                class="d-flex align-items-center justify-content-between mb-3"
-              >
-                <h5 class="fw-bold mb-0">
-                  <i class="fa-solid fa-filter text-danger me-2"></i> Filters
-                </h5>
-                <a
-                  href="#"
-                  class="small text-danger text-decoration-none fw-bold"
-                  >Reset</a
-                >
-              </div>
-              <div class="bg-white p-3 rounded shadow-sm border">
-                <div class="mb-3">
-                  <h6
-                    class="fw-bold mb-2 text-dark text-uppercase small text-muted"
-                  >
-                    City
-                  </h6>
-                  <div class="dropdown w-100">
-                    <button
-                      class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-light"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                    >
-                      <span id="desktopSelectedCity">Select City</span>
-                      <i
-                        class="fa-solid fa-caret-down text-secondary small"
-                      ></i>
-                    </button>
-                    <div
-                      class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                    >
-                      <div class="input-group mb-2 border rounded-1 bg-light">
-                        <span
-                          class="input-group-text bg-transparent border-0 pe-1"
-                          ><i
-                            class="fa-solid fa-magnifying-glass small text-muted"
-                          ></i></span
-                        ><input
-                          type="text"
-                          class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                          placeholder="Search..."
-                        />
-                      </div>
-                      <div class="list-options custom-scrollbar">
-                        <a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedCity')"
-                          >Lucknow</a
-                        ><a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedCity')"
-                          >Kanpur</a
-                        ><a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedCity')"
-                          >Delhi</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <h6
-                    class="fw-bold mb-2 text-dark text-uppercase small text-muted"
-                  >
-                    Locality
-                  </h6>
-                  <div class="dropdown w-100">
-                    <button
-                      class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-light"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                    >
-                      <span id="desktopSelectedLocality">Select Locality</span>
-                      <i
-                        class="fa-solid fa-caret-down text-secondary small"
-                      ></i>
-                    </button>
-                    <div
-                      class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                    >
-                      <div class="input-group mb-2 border rounded-1 bg-light">
-                        <span
-                          class="input-group-text bg-transparent border-0 pe-1"
-                          ><i
-                            class="fa-solid fa-magnifying-glass small text-muted"
-                          ></i></span
-                        ><input
-                          type="text"
-                          class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                          placeholder="Search..."
-                        />
-                      </div>
-                      <div class="list-options custom-scrollbar">
-                        <a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="
-                            selectFilter(this, 'desktopSelectedLocality')
-                          "
-                          >Gomti Nagar</a
-                        ><a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="
-                            selectFilter(this, 'desktopSelectedLocality')
-                          "
-                          >Hazratganj</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <h6
-                    class="fw-bold mb-2 text-dark text-uppercase small text-muted"
-                  >
-                    Category
-                  </h6>
-                  <div class="dropdown w-100">
-                    <button
-                      class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-light"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                    >
-                      <span id="desktopSelectedCat">Select Category</span>
-                      <i
-                        class="fa-solid fa-caret-down text-secondary small"
-                      ></i>
-                    </button>
-                    <div
-                      class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                    >
-                      <div class="input-group mb-2 border rounded-1 bg-light">
-                        <span
-                          class="input-group-text bg-transparent border-0 pe-1"
-                          ><i
-                            class="fa-solid fa-magnifying-glass small text-muted"
-                          ></i></span
-                        ><input
-                          type="text"
-                          class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                          placeholder="Search..."
-                        />
-                      </div>
-                      <div class="list-options custom-scrollbar">
-                        <a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedCat')"
-                          >Wedding</a
-                        ><a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedCat')"
-                          >Birthday</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="mb-3">
-                  <h6
-                    class="fw-bold mb-2 text-dark text-uppercase small text-muted"
-                  >
-                    Sub-Category
-                  </h6>
-                  <div class="dropdown w-100">
-                    <button
-                      class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-light"
-                      type="button"
-                      data-bs-toggle="dropdown"
-                    >
-                      <span id="desktopSelectedSubCat">Select SubCategory</span>
-                      <i
-                        class="fa-solid fa-caret-down text-secondary small"
-                      ></i>
-                    </button>
-                    <div
-                      class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                    >
-                      <div class="input-group mb-2 border rounded-1 bg-light">
-                        <span
-                          class="input-group-text bg-transparent border-0 pe-1"
-                          ><i
-                            class="fa-solid fa-magnifying-glass small text-muted"
-                          ></i></span
-                        ><input
-                          type="text"
-                          class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                          placeholder="Search..."
-                        />
-                      </div>
-                      <div class="list-options custom-scrollbar">
-                        <a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedSubCat')"
-                          >Balloon Decor</a
-                        ><a
-                          class="dropdown-item option-link"
-                          href="#"
-                          onclick="selectFilter(this, 'desktopSelectedSubCat')"
-                          >Flower Decor</a
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-danger w-100 fw-bold mt-2"
-                  style="background-color: #e62e2e"
-                >
-                  Apply Filters
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6 col-12">
-            <div
-              class="card listing-card border-0 shadow-sm mb-4 overflow-hidden position-relative"
-            >
+          <div class="col-lg-8">
+            <div class="card listing-card border-0 shadow-sm mb-4 overflow-hidden position-relative">
               <div class="row g-0">
                 <div class="col-md-4 position-relative">
-                  <img
-                    src="birthday.jpg"
-                    class="img-fluid rounded-start object-fit-cover"
-                    alt="Listing"
-                  />
-                  <span
-                    class="position-absolute top-0 start-0 bg-danger text-white small px-2 py-1 fw-bold rounded-end mt-2 z-3"
-                    ><i class="fa-solid fa-crown me-1"></i> Premium</span
-                  >
-                  <div
-                    class="position-absolute bottom-0 start-0 w-100 p-2 bg-gradient-dark text-white d-flex justify-content-between small z-3"
-                  >
-                    <span
-                      ><i class="fa-regular fa-image me-1"></i> 12 Photos</span
-                    >
-                  </div>
+                  <img src="birthday.jpg" class="img-fluid rounded-start object-fit-cover h-100" alt="Listing" style="min-height: 200px;" />
+                  <span class="position-absolute top-0 start-0 bg-danger text-white small px-2 py-1 fw-bold rounded-end mt-2 z-3"><i class="fa-solid fa-crown me-1"></i> Premium</span>
+                  <div class="position-absolute bottom-0 start-0 w-100 p-2 bg-gradient-dark text-white d-flex justify-content-between small z-3"><span><i class="fa-regular fa-image me-1"></i> 12 Photos</span></div>
                 </div>
                 <div class="col-md-8 p-3 d-flex flex-column">
-                  <div
-                    class="d-flex justify-content-between align-items-start mb-2"
-                  >
-                    <h5 class="fw-bold mb-0 text-dark">
-                      <a
-                        href="listing-detail.html"
-                        target="_blank"
-                        class="text-decoration-none text-black stretched-link"
-                        >Royal Balloon Events & Decor</a
-                      >
-                    </h5>
-                    <button
-                      class="btn btn-light btn-sm rounded-circle text-danger position-relative z-3"
-                    >
-                      <i class="fa-regular fa-heart"></i>
-                    </button>
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="fw-bold mb-0 text-dark"><a href="listing-detail.html" target="_blank" class="text-decoration-none text-black stretched-link">Royal Balloon Events</a></h5>
+                    <button class="btn btn-light btn-sm rounded-circle text-danger position-relative z-3"><i class="fa-regular fa-heart"></i></button>
                   </div>
                   <div class="mb-2">
-                    <span class="badge bg-success rounded-1 me-2"
-                      >4.8 <i class="fa-solid fa-star small"></i
-                    ></span>
+                    <span class="badge bg-success rounded-1 me-2">4.8 <i class="fa-solid fa-star small"></i></span>
                     <span class="small text-muted fw-medium">120 Ratings</span>
-                    <span
-                      class="badge bg-light text-danger border border-danger-subtle ms-2 position-relative z-3"
-                      ><i class="fa-solid fa-bolt me-1"></i>Top Search</span
-                    >
+                    <span class="badge bg-light text-danger border border-danger-subtle ms-2 position-relative z-3"><i class="fa-solid fa-bolt me-1"></i> Top Search</span>
                   </div>
-                  <p class="small text-muted mb-2">
-                    <i class="fa-solid fa-location-dot me-1 text-danger"></i>
-                    Gomti Nagar, Lucknow •
-                    <span class="text-success fw-medium">Open Now</span>
-                  </p>
+                  <p class="small text-muted mb-2"><i class="fa-solid fa-location-dot me-1 text-danger"></i> Gomti Nagar, Lucknow • <span class="text-success fw-medium">Open Now</span></p>
                   <div class="mb-3">
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Birthday</span
-                    >
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Anniversary</span
-                    >
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >+3 More</span
-                    >
+                    <span class="badge bg-light text-secondary border fw-normal position-relative z-3">Birthday</span>
+                    <span class="badge bg-light text-secondary border fw-normal position-relative z-3">Anniversary</span>
                   </div>
                   <div class="mt-auto d-flex gap-2 position-relative z-3">
-                    <button class="btn btn-danger fw-bold flex-grow-1">
-                      <i class="fa-solid fa-phone me-2"></i> Call Now
-                    </button>
-                    <button class="btn btn-outline-success fw-bold flex-grow-1">
-                      <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
-                    </button>
+                    <button class="btn btn-danger fw-bold flex-grow-1"><i class="fa-solid fa-phone me-2"></i> Call</button>
+                    <button class="btn btn-outline-success fw-bold flex-grow-1"><i class="fa-brands fa-whatsapp me-2"></i> Chat</button>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div
-              class="card listing-card border-0 shadow-sm mb-4 overflow-hidden position-relative"
-            >
+            
+            <div class="card listing-card border-0 shadow-sm mb-4 overflow-hidden position-relative">
               <div class="row g-0">
                 <div class="col-md-4 position-relative">
-                  <img
-                    src="birthday.jpg"
-                    class="img-fluid rounded-start object-fit-cover"
-                    alt="Listing"
-                  />
+                  <img src="birthday.jpg" class="img-fluid rounded-start object-fit-cover h-100" alt="Listing" style="min-height: 200px;" />
                 </div>
                 <div class="col-md-8 p-3 d-flex flex-column">
-                  <div
-                    class="d-flex justify-content-between align-items-start mb-2"
-                  >
-                    <h5 class="fw-bold mb-0 text-dark">
-                      <a
-                        href="listing-detail.html"
-                        target="_blank"
-                        class="text-decoration-none text-black stretched-link"
-                        >Dream Big Celebrations</a
-                      >
-                    </h5>
-                    <button
-                      class="btn btn-light btn-sm rounded-circle text-danger position-relative z-3"
-                    >
-                      <i class="fa-regular fa-heart"></i>
-                    </button>
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h5 class="fw-bold mb-0 text-dark"><a href="listing-detail.html" target="_blank" class="text-decoration-none text-black stretched-link">Dream Big Celebrations</a></h5>
+                    <button class="btn btn-light btn-sm rounded-circle text-danger position-relative z-3"><i class="fa-regular fa-heart"></i></button>
                   </div>
                   <div class="mb-2">
-                    <span class="badge bg-success rounded-1 me-2"
-                      >4.5 <i class="fa-solid fa-star small"></i
-                    ></span>
+                    <span class="badge bg-success rounded-1 me-2">4.5 <i class="fa-solid fa-star small"></i></span>
                     <span class="small text-muted fw-medium">85 Ratings</span>
-                    <span
-                      class="badge bg-light text-primary border border-primary-subtle ms-2 position-relative z-3"
-                      ><i class="fa-solid fa-check-circle me-1"></i
-                      >Verified</span
-                    >
                   </div>
-                  <p class="small text-muted mb-2">
-                    <i class="fa-solid fa-location-dot me-1 text-danger"></i>
-                    Aliganj, Lucknow •
-                    <span class="text-danger fw-medium">Closed Now</span>
-                  </p>
-                  <div class="mb-3">
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Balloon Arches</span
-                    >
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Theme Decor</span
-                    >
-                  </div>
+                  <p class="small text-muted mb-2"><i class="fa-solid fa-location-dot me-1 text-danger"></i> Aliganj, Lucknow</p>
                   <div class="mt-auto d-flex gap-2 position-relative z-3">
-                    <button class="btn btn-danger fw-bold flex-grow-1">
-                      <i class="fa-solid fa-phone me-2"></i> Call Now
-                    </button>
-                    <button class="btn btn-outline-success fw-bold flex-grow-1">
-                      <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="card listing-card border-0 shadow-sm mb-4 overflow-hidden position-relative"
-            >
-              <div class="row g-0">
-                <div class="col-md-4 position-relative">
-                  <img
-                    src="birthday.jpg"
-                    class="img-fluid rounded-start object-fit-cover"
-                    alt="Listing"
-                  />
-                </div>
-                <div class="col-md-8 p-3 d-flex flex-column">
-                  <div
-                    class="d-flex justify-content-between align-items-start mb-2"
-                  >
-                    <h5 class="fw-bold mb-0 text-dark">
-                      <a
-                        href="listing-detail.html"
-                        target="_blank"
-                        class="text-decoration-none text-black stretched-link"
-                        >Party Poppers Events</a
-                      >
-                    </h5>
-                    <button
-                      class="btn btn-light btn-sm rounded-circle text-danger position-relative z-3"
-                    >
-                      <i class="fa-regular fa-heart"></i>
-                    </button>
-                  </div>
-                  <div class="mb-2">
-                    <span class="badge bg-warning text-dark rounded-1 me-2"
-                      >3.9 <i class="fa-solid fa-star small"></i
-                    ></span>
-                    <span class="small text-muted fw-medium">40 Ratings</span>
-                  </div>
-                  <p class="small text-muted mb-2">
-                    <i class="fa-solid fa-location-dot me-1 text-danger"></i>
-                    Hazratganj, Lucknow •
-                    <span class="text-success fw-medium">Open Now</span>
-                  </p>
-                  <div class="mb-3">
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Kids Party</span
-                    >
-                    <span
-                      class="badge bg-light text-secondary border fw-normal position-relative z-3"
-                      >Welcome Decor</span
-                    >
-                  </div>
-                  <div class="mt-auto d-flex gap-2 position-relative z-3">
-                    <button class="btn btn-danger fw-bold flex-grow-1">
-                      <i class="fa-solid fa-phone me-2"></i> Call Now
-                    </button>
-                    <button class="btn btn-outline-success fw-bold flex-grow-1">
-                      <i class="fa-brands fa-whatsapp me-2"></i> WhatsApp
-                    </button>
+                    <button class="btn btn-danger fw-bold flex-grow-1"><i class="fa-solid fa-phone me-2"></i> Call</button>
+                    <button class="btn btn-outline-success fw-bold flex-grow-1"><i class="fa-brands fa-whatsapp me-2"></i> Chat</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 d-none d-lg-block">
-            <div class="sticky-top" style="top: 90px; z-index: 1">
-              <div
-                class="card border-0 shadow-sm overflow-hidden mb-3 text-white text-center p-4 position-relative"
-                style="background: linear-gradient(135deg, #e62e2e, #a01a1a)"
-              >
+          <div class="col-lg-4 d-none d-lg-block">
+            <div class="sticky-top" style="top: 140px; z-index: 1">
+              <div class="card border-0 shadow-sm overflow-hidden mb-3 text-white text-center p-4 position-relative" style="background: linear-gradient(135deg, #e62e2e, #a01a1a)">
                 <div class="card-body position-relative z-1">
-                  <h5 class="fw-bold text-white mb-1">Boost Your Business</h5>
-                  <h2 class="fw-bold text-warning mb-3">Get Leads!</h2>
-                  <button
-                    class="btn btn-light text-danger fw-bold px-4 rounded-pill shadow-sm"
-                  >
-                    Advertise Now
-                  </button>
+                  <h5 class="fw-bold text-white mb-1">Boost Business</h5>
+                  <h3 class="fw-bold text-warning mb-3">Get Leads!</h3>
+                  <button class="btn btn-light text-danger fw-bold px-4 rounded-pill shadow-sm">Advertise</button>
                 </div>
-                <div
-                  class="position-absolute top-0 end-0 bg-white opacity-10 rounded-circle"
-                  style="
-                    width: 150px;
-                    height: 150px;
-                    margin-top: -50px;
-                    margin-right: -50px;
-                  "
-                ></div>
+                <div class="position-absolute top-0 end-0 bg-white opacity-10 rounded-circle" style="width: 150px; height: 150px; margin-top: -50px; margin-right: -50px;"></div>
               </div>
               <div class="card border-0 shadow-sm p-3">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-2"
-                >
-                  <h6 class="fw-bold text-muted text-uppercase small mb-0">
-                    Sponsored
-                  </h6>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h6 class="fw-bold text-muted text-uppercase small mb-0">Sponsored</h6>
                   <span class="badge bg-light text-dark border">Ad</span>
                 </div>
-                <img
-                  src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80"
-                  class="img-fluid rounded mb-3"
-                  alt="Ad"
-                />
+                <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" class="img-fluid rounded mb-3" alt="Ad" />
                 <h6 class="fw-bold text-dark">Elite Event Planners</h6>
-                <p class="small text-muted mb-2">
-                  Premium wedding planning services with 5-star rating.
-                </p>
-                <button class="btn btn-outline-dark btn-sm w-100 fw-medium">
-                  View Profile
-                </button>
+                <button class="btn btn-outline-dark btn-sm w-100 fw-medium">View Profile</button>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <div class="side-sticky-tabs d-none d-lg-flex flex-column gap-1">
-      <a href="#" class="tab-btn shadow bg-danger text-white"> Advertise </a>
-      <a href="#" class="tab-btn shadow bg-dark text-white"> Free Listing </a>
-    </div>
-
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="filterSidebar"
-      aria-labelledby="filterSidebarLabel"
-      style="z-index: 1055"
-    >
-      <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-bold text-dark" id="filterSidebarLabel">
-          <i class="fa-solid fa-filter text-danger me-2"></i> Apply Filters
-        </h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body bg-light p-3">
-        <div class="card border-0 shadow-sm mb-3 rounded-3">
-          <div class="card-body p-3">
-            <h6 class="fw-bold mb-2 text-dark text-uppercase small">
-              <i class="fa-solid fa-map-location-dot me-2 text-secondary"></i>
-              City
-            </h6>
-            <div class="dropdown w-100">
-              <button
-                class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-white"
-                type="button"
-                id="cityDropdownBtn"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="selectedCity">Select City</span>
-                <i class="fa-solid fa-caret-down text-secondary small"></i>
-              </button>
-              <div
-                class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                aria-labelledby="cityDropdownBtn"
-              >
-                <div class="input-group mb-2 border rounded-1 bg-light">
-                  <span class="input-group-text bg-transparent border-0 pe-1"
-                    ><i
-                      class="fa-solid fa-magnifying-glass small text-muted"
-                    ></i></span
-                  ><input
-                    type="text"
-                    class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                    placeholder="Search..."
-                  />
-                </div>
-                <div class="list-options custom-scrollbar">
-                  <a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedCity')"
-                    >Lucknow</a
-                  ><a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedCity')"
-                    >Kanpur</a
-                  ><a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedCity')"
-                    >Delhi</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm mb-3 rounded-3">
-          <div class="card-body p-3">
-            <h6 class="fw-bold mb-2 text-dark text-uppercase small">
-              <i class="fa-solid fa-location-dot me-2 text-secondary"></i>
-              Locality
-            </h6>
-            <div class="dropdown w-100">
-              <button
-                class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-white"
-                type="button"
-                id="localityDropdownBtn"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="selectedLocality">Select Locality</span>
-                <i class="fa-solid fa-caret-down text-secondary small"></i>
-              </button>
-              <div
-                class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                aria-labelledby="localityDropdownBtn"
-              >
-                <div class="input-group mb-2 border rounded-1 bg-light">
-                  <span class="input-group-text bg-transparent border-0 pe-1"
-                    ><i
-                      class="fa-solid fa-magnifying-glass small text-muted"
-                    ></i></span
-                  ><input
-                    type="text"
-                    class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                    placeholder="Search..."
-                  />
-                </div>
-                <div class="list-options custom-scrollbar">
-                  <a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedLocality')"
-                    >Gomti Nagar</a
-                  ><a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedLocality')"
-                    >Hazratganj</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm mb-3 rounded-3">
-          <div class="card-body p-3">
-            <h6 class="fw-bold mb-2 text-dark text-uppercase small">
-              <i class="fa-solid fa-layer-group me-2 text-secondary"></i>
-              Category
-            </h6>
-            <div class="dropdown w-100">
-              <button
-                class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-white"
-                type="button"
-                id="catDropdownBtn"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="selectedCat">Select Category</span>
-                <i class="fa-solid fa-caret-down text-secondary small"></i>
-              </button>
-              <div
-                class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                aria-labelledby="catDropdownBtn"
-              >
-                <div class="input-group mb-2 border rounded-1 bg-light">
-                  <span class="input-group-text bg-transparent border-0 pe-1"
-                    ><i
-                      class="fa-solid fa-magnifying-glass small text-muted"
-                    ></i></span
-                  ><input
-                    type="text"
-                    class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                    placeholder="Search..."
-                  />
-                </div>
-                <div class="list-options custom-scrollbar">
-                  <a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedCat')"
-                    >Wedding</a
-                  ><a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedCat')"
-                    >Birthday</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card border-0 shadow-sm mb-3 rounded-3">
-          <div class="card-body p-3">
-            <h6 class="fw-bold mb-2 text-dark text-uppercase small">
-              <i class="fa-solid fa-tags me-2 text-secondary"></i> Sub-Category
-            </h6>
-            <div class="dropdown w-100">
-              <button
-                class="btn btn-white w-100 text-start d-flex justify-content-between align-items-center border bg-white"
-                type="button"
-                id="subCatDropdownBtn"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span id="selectedSubCat">Select SubCat</span>
-                <i class="fa-solid fa-caret-down text-secondary small"></i>
-              </button>
-              <div
-                class="dropdown-menu w-100 p-2 shadow border-0 mt-1 custom-dropdown-menu"
-                aria-labelledby="subCatDropdownBtn"
-              >
-                <div class="input-group mb-2 border rounded-1 bg-light">
-                  <span class="input-group-text bg-transparent border-0 pe-1"
-                    ><i
-                      class="fa-solid fa-magnifying-glass small text-muted"
-                    ></i></span
-                  ><input
-                    type="text"
-                    class="form-control border-0 shadow-none bg-transparent ps-1 dropdown-search"
-                    placeholder="Search..."
-                  />
-                </div>
-                <div class="list-options custom-scrollbar">
-                  <a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedSubCat')"
-                    >Balloon Decor</a
-                  ><a
-                    class="dropdown-item option-link"
-                    href="#"
-                    onclick="selectFilter(this, 'selectedSubCat')"
-                    >Flower Decor</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="offcanvas-footer p-3 border-top bg-white">
-        <button
-          class="btn btn-danger w-100 py-2 fw-bold text-uppercase ls-wide shadow-sm"
-          data-bs-dismiss="offcanvas"
-          style="background-color: #e62e2e"
-        >
-          Apply Filters
-        </button>
-      </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-      function selectFilter(element, targetId) {
-        document.getElementById(targetId).innerText = element.innerText;
-        let parentDiv = element.closest(".list-options");
-        parentDiv
-          .querySelectorAll(".option-link")
-          .forEach((el) => el.classList.remove("active"));
-        element.classList.add("active");
-      }
-      function updateCity(cityName) {
-        document.getElementById("mobileSelectedCity").innerText = cityName;
-        // Update desktop navbar city too if it exists
-        if (document.getElementById("desktopNavCity")) {
-          document.getElementById("desktopNavCity").innerText = cityName;
-        }
-      }
-      document.querySelectorAll(".dropdown-search").forEach((input) => {
-        input.addEventListener("keyup", function () {
-          let filter = this.value.toUpperCase();
-          let listContainer =
-            this.closest(".dropdown-menu").querySelector(".list-options");
-          let items = listContainer.querySelectorAll(".option-link");
-          items.forEach((item) => {
-            let txtValue = item.textContent || item.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-              item.style.display = "";
-            } else {
-              item.style.display = "none";
-            }
-          });
-        });
-      });
+  function selectFilter(element, btnId) {
+    // 1. Button ka text aur style badlo
+    let text = element.querySelector('span:first-child') ? element.querySelector('span:first-child').innerText : element.innerText;
+    let btn = document.getElementById(btnId);
+    btn.innerText = text;
+    btn.classList.add('active-filter');
+    
+    // 2. List mein se purana active hatao aur naya lagao
+    let parentDiv = element.closest('.list-options');
+    parentDiv.querySelectorAll('.option-link').forEach(el => el.classList.remove('active'));
+    element.classList.add('active');
+
+    // 3. DROPDOWN HIDE FIX: Yeh line menu ko band kar degi
+    const dropdownToggle = btn;
+    const dropdownInstance = bootstrap.Dropdown.getOrCreateInstance(dropdownToggle);
+    dropdownInstance.hide();
+}
     </script>
   </body>
 </html>
