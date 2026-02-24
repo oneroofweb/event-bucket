@@ -526,3 +526,53 @@ LUCKNOW PAGE - CSS
 .dynamic-toggle-btn[aria-expanded="true"] .show-more-text { display: none; }
 .dynamic-toggle-btn[aria-expanded="true"] .show-less-text { display: inline; }
 .dynamic-toggle-btn:hover { transform: translateY(-3px); }
+
+
+/* ============== Filter CSS ============= */
+/* Filter Card Styles */
+.btn-white {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    color: #555;
+    transition: all 0.2s;
+}
+.btn-white:hover, .btn-white:focus {
+    border-color: #aaa !important;
+    background-color: #fff !important;
+}
+
+/* Dropdown Menu Customization */
+.custom-dropdown-menu {
+    border-radius: 8px;
+    transform: translateY(5px) !important; /* Thoda niche khulega */
+}
+
+/* Scrollable List Area */
+.list-options {
+    max-height: 180px;
+    overflow-y: auto;
+}
+
+/* List Items */
+.option-link {
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    color: #333;
+    border-radius: 4px;
+    margin-bottom: 2px;
+}
+.option-link:hover {
+    background-color: #f0fdf4; /* Light Green hover jaisa screenshot me hai */
+    color: #166534;
+}
+
+/* Selected Active Item */
+.option-link.active {
+    background-color: #dcfce7 !important; /* Green Background */
+    color: #15803d !important; /* Green Text */
+    font-weight: 600;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 5px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
