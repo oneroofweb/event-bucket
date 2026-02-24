@@ -419,3 +419,110 @@ Fix Listing Card Image Height
     transform: scale(1.1);
     background-color: #c91e1e !important; /* Darker red on hover */
 }
+
+/* 
+=======================================================
+LUCKNOW PAGE - CSS
+=======================================================
+/* ================= MODERN FAQ STYLES ================= */
+
+/* Individual FAQ Card Container */
+.modern-faq .accordion-item {
+    border: 1px solid #eef0f3;
+    border-radius: 12px !important;
+    margin-bottom: 16px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+/* Hover Effect for the entire Card */
+.modern-faq .accordion-item:hover {
+    border-color: rgba(230, 46, 46, 0.2);
+    box-shadow: 0 10px 25px rgba(230, 46, 46, 0.08);
+    transform: translateY(-2px);
+}
+
+/* FAQ Button Styling */
+.modern-faq .accordion-button {
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    font-size: 1.05rem;
+    color: #2c3e50;
+    box-shadow: none !important; /* Removes blue bootstrap glow */
+}
+
+/* Hide Default Bootstrap Arrow */
+.modern-faq .accordion-button::after {
+    display: none !important;
+}
+
+/* FAQ Text specific styling for spacing */
+.modern-faq .faq-text {
+    padding-right: 15px;
+    line-height: 1.4;
+}
+
+/* Custom Circular Icon Wrapper */
+.modern-faq .faq-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #f4f6f9;
+    color: #a0aab5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: auto;
+    font-size: 0.9rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active State Styles (When Accordion is OPEN) */
+.modern-faq .accordion-button:not(.collapsed) {
+    background-color: #fff;
+    color: var(--primary-color, #e62e2e) !important;
+    border-bottom: 1px dashed #f0f0f0;
+}
+
+/* Active State Icon Animation (Turns Red & Rotates) */
+.modern-faq .accordion-button:not(.collapsed) .faq-icon {
+    background-color: var(--primary-color, #e62e2e);
+    color: #ffffff;
+    transform: rotate(-180deg);
+    box-shadow: 0 4px 10px rgba(230, 46, 46, 0.3);
+}
+
+/* FAQ Answer Body Styling */
+.modern-faq .accordion-body {
+    padding: 1.5rem;
+    color: #64748b;
+    line-height: 1.7;
+    font-size: 0.95rem;
+    background-color: #fafbfc;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .modern-faq .accordion-button {
+        font-size: 0.95rem;
+        padding: 1rem;
+    }
+    .modern-faq .faq-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    .modern-faq .accordion-body {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ================= SINGLE BUTTON TEXT TOGGLE TRICK ================= */
+.dynamic-toggle-btn .show-less-text { display: none; }
+.dynamic-toggle-btn[aria-expanded="true"] .show-more-text { display: none; }
+.dynamic-toggle-btn[aria-expanded="true"] .show-less-text { display: inline; }
+.dynamic-toggle-btn:hover { transform: translateY(-3px); }
