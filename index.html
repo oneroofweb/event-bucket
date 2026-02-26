@@ -1,205 +1,125 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 
-    <meta name="robots" content="noindex" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-    <title>Event Bucket | Premium Event Planning</title>
+  <meta name="robots" content="noindex" />
 
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <nav
-      class="navbar navbar-expand-lg bg-white sticky-top py-2 shadow-sm"
-      style="z-index: 1040"
-    >
-      <div class="container-fluid container-lg">
-        <a
-          class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4"
-          href="index.html"
-          style="font-size: 1.5rem; color: #e62e2e !important"
-        >
-          <i class="fa-solid fa-champagne-glasses"></i> Event Bucket
-        </a>
-        <button
-          class="navbar-toggler border-0 shadow-none"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#mobileMenu"
-        >
-          <span class="fa-solid fa-bars-staggered fa-lg text-dark"></span>
-        </button>
+  <title>Event Bucket | Premium Event Planning</title>
 
-        <div
-          class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100"
-        >
-          <div
-            class="mx-auto d-flex align-items-center bg-white rounded-pill px-2 py-1 desktop-search-bar"
-            style="width: 100%; max-width: 550px"
-          >
-            <div class="dropdown border-end pe-2 me-2">
-              <button
-                class="btn btn-sm border-0 dropdown-toggle fw-semibold text-dark d-flex align-items-center gap-2"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                <i class="fa-solid fa-location-dot text-danger"></i>
-                <span id="desktopNavCity">Lucknow</span>
-              </button>
-              <ul class="dropdown-menu border-0 shadow mt-2">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Lucknow')"
-                    >Lucknow</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="updateCity('Kanpur')"
-                    >Kanpur</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="input-group border-0">
-              <input
-                type="text"
-                class="form-control border-0 bg-transparent shadow-none"
-                placeholder="Search decorators, venues..."
-              />
-              <button
-                class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center p-2"
-                style="width: 35px; height: 35px; background-color: #e62e2e"
-              >
-                <i class="fa-solid fa-magnifying-glass text-white small"></i>
-              </button>
-            </div>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-white sticky-top py-2 shadow-sm" style="z-index: 1040">
+    <div class="container-fluid container-lg">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2 me-4" href="index.html"
+        style="font-size: 1.5rem; color: #e62e2e !important">
+        <i class="fa-solid fa-champagne-glasses"></i> Event Bucket
+      </a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#mobileMenu">
+        <span class="fa-solid fa-bars-staggered fa-lg text-dark"></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-between align-items-center w-100">
+        <div class="mx-auto d-flex align-items-center bg-white rounded-pill px-2 py-1 desktop-search-bar"
+          style="width: 100%; max-width: 550px">
+          <div class="dropdown border-end pe-2 me-2">
+            <button class="btn btn-sm border-0 dropdown-toggle fw-semibold text-dark d-flex align-items-center gap-2"
+              type="button" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-location-dot text-danger"></i>
+              <span id="desktopNavCity">Lucknow</span>
+            </button>
+            <ul class="dropdown-menu border-0 shadow mt-2">
+              <li>
+                <a class="dropdown-item" href="#" onclick="updateCity('Lucknow')">Lucknow</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" onclick="updateCity('Kanpur')">Kanpur</a>
+              </li>
+            </ul>
           </div>
-          <div class="d-flex align-items-center gap-3 ms-4">
-            <a href="#" class="nav-link fw-semibold text-dark text-nowrap"
-              ><i class="fa-solid fa-plus-circle text-danger"></i> Add
-              Business</a
-            >
-            <div class="vr text-secondary opacity-25"></div>
-            <a
-              href="#"
-              class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap"
-              style="border-color: #e62e2e; color: #e62e2e"
-              >Login</a
-            >
+          <div class="input-group border-0">
+            <input type="text" class="form-control border-0 bg-transparent shadow-none"
+              placeholder="Search decorators, venues..." />
+            <button class="btn btn-danger rounded-circle d-flex align-items-center justify-content-center p-2"
+              style="width: 35px; height: 35px; background-color: #e62e2e">
+              <i class="fa-solid fa-magnifying-glass text-white small"></i>
+            </button>
           </div>
         </div>
-      </div>
-    </nav>
-
-    <div
-      class="d-lg-none position-fixed start-0 end-0 bg-white border-bottom shadow-sm px-3 py-2"
-      style="z-index: 1030"
-    >
-      <div class="d-flex gap-2 align-items-center">
-        <div class="dropdown flex-shrink-0">
-          <button
-            class="btn btn-outline-danger rounded-pill btn-sm fw-bold d-flex align-items-center gap-1"
-            type="button"
-            data-bs-toggle="dropdown"
-            style="border-color: #e62e2e; color: #e62e2e; padding: 6px 12px"
-          >
-            <i class="fa-solid fa-location-dot"></i>
-            <span id="mobileSelectedCity">Lucknow</span>
-            <i class="fa-solid fa-caret-down ms-1 small"></i>
-          </button>
-          <ul
-            class="dropdown-menu shadow border-0 mt-1"
-            style="border-radius: 10px"
-          >
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Lucknow')"
-                >Lucknow</a
-              >
-            </li>
-            <li>
-              <a
-                class="dropdown-item small"
-                href="#"
-                onclick="updateCity('Kanpur')"
-                >Kanpur</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div class="flex-grow-1">
-          <div class="input-group">
-            <span
-              class="input-group-text bg-light border-end-0 rounded-start-pill ps-3 text-secondary"
-              ><i class="fa-solid fa-magnifying-glass"></i
-            ></span>
-            <input
-              type="text"
-              class="form-control bg-light border-start-0 rounded-end-pill shadow-none small"
-              placeholder="Search..."
-              style="font-size: 0.9rem"
-            />
-          </div>
+        <div class="d-flex align-items-center gap-3 ms-4">
+          <a href="add-business.html" class="nav-link fw-semibold text-dark text-nowrap"><i
+              class="fa-solid fa-plus-circle text-danger"></i> Add
+            Business</a>
+          <div class="vr text-secondary opacity-25"></div>
+          <a href="#" class="btn btn-outline-danger btn-sm px-4 py-2 rounded-pill fw-semibold text-nowrap"
+            style="border-color: #e62e2e; color: #e62e2e">Login</a>
         </div>
       </div>
     </div>
+  </nav>
 
-    <div
-      class="offcanvas offcanvas-start"
-      tabindex="-1"
-      id="mobileMenu"
-      style="z-index: 1050"
-    >
-      <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">
-          Event Bucket
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-        ></button>
-      </div>
-      <div class="offcanvas-body d-flex flex-column">
-        <ul class="navbar-nav fs-5 gap-3 mt-3">
-          <li class="nav-item">
-            <a class="nav-link text-dark border-bottom pb-2" href="#">Home</a>
+  <div class="d-lg-none position-fixed start-0 end-0 bg-white border-bottom shadow-sm px-3 py-2" style="z-index: 1030">
+    <div class="d-flex gap-2 align-items-center">
+      <div class="dropdown flex-shrink-0">
+        <button class="btn btn-outline-danger rounded-pill btn-sm fw-bold d-flex align-items-center gap-1" type="button"
+          data-bs-toggle="dropdown" style="border-color: #e62e2e; color: #e62e2e; padding: 6px 12px">
+          <i class="fa-solid fa-location-dot"></i>
+          <span id="mobileSelectedCity">Lucknow</span>
+          <i class="fa-solid fa-caret-down ms-1 small"></i>
+        </button>
+        <ul class="dropdown-menu shadow border-0 mt-1" style="border-radius: 10px">
+          <li>
+            <a class="dropdown-item small" href="#" onclick="updateCity('Lucknow')">Lucknow</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark border-bottom pb-2" href="#"
-              >Services</a
-            >
+          <li>
+            <a class="dropdown-item small" href="#" onclick="updateCity('Kanpur')">Kanpur</a>
           </li>
         </ul>
       </div>
+      <div class="flex-grow-1">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0 rounded-start-pill ps-3 text-secondary"><i
+              class="fa-solid fa-magnifying-glass"></i></span>
+          <input type="text" class="form-control bg-light border-start-0 rounded-end-pill shadow-none small"
+            placeholder="Search..." style="font-size: 0.9rem" />
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- ================== Search Bar Section ================ -->
-<!-- <section class="directory-hero position-relative d-flex align-items-center justify-content-center">
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" style="z-index: 1050">
+    <div class="offcanvas-header border-bottom">
+      <h5 class="offcanvas-title fw-bold" style="color: #e62e2e">
+        Event Bucket
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav fs-5 gap-3 mt-3">
+        <li class="nav-item">
+          <a class="nav-link text-dark border-bottom pb-2" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark border-bottom pb-2" href="#">Services</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================== Search Bar Section ================ -->
+  <!-- <section class="directory-hero position-relative d-flex align-items-center justify-content-center">
   
   <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: -2;">
     <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=2070&q=80&quot;" 
@@ -254,7 +174,7 @@
 </section> -->
 
 
-    <!-- <section class="hero-section">
+  <!-- <section class="hero-section">
       <div
         class="position-absolute top-0 start-0 w-100 h-100"
         style="
@@ -299,326 +219,254 @@
       </div>
     </section> -->
 
-    <section class="py-5 bg-light">
-      <div class="container py-4">
-        <div class="text-center mb-5">
-          <h6 class="text-danger fw-bold text-uppercase ls-wide">What We Do</h6>
-          <h2 class="fw-bold display-6 mb-3">Our Event Categories</h2>
-          <div class="theme-divider mx-auto mb-3"></div>
-          <p class="text-muted w-75 mx-auto">
-            Discover our wide range of services tailored to make every occasion
-            memorable.
-          </p>
-        </div>
+  <section class="py-5 bg-light">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h6 class="text-danger fw-bold text-uppercase ls-wide">What We Do</h6>
+        <h2 class="fw-bold display-6 mb-3">Our Event Categories</h2>
+        <div class="theme-divider mx-auto mb-3"></div>
+        <p class="text-muted w-75 mx-auto">
+          Discover our wide range of services tailored to make every occasion
+          memorable.
+        </p>
+      </div>
 
-        <div class="row g-4">
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+      <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-40">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1583875762487-5f8f7c718d14?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Birthday"
-                />
+                <img src="https://images.unsplash.com/photo-1583875762487-5f8f7c718d14?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Birthday" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-cake-candles text-danger fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-cake-candles text-danger fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Planners & Decorators</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-40 overflow-hidden">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="birthday.jpg"
-                  class="card-img-top"
-                  alt="Flower Decor"
-                />
+                <img src="birthday.jpg" class="card-img-top" alt="Flower Decor" />
               </div>
               <div class="card-body text-center">
                 <i class="fa-solid fa-leaf text-success fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Party Venues</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
                 <img
                   src="https://plus.unsplash.com/premium_photo-1663839412026-51a44cfadfb8?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Balloon Decor"
-                />
+                  class="card-img-top" alt="Balloon Decor" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-dharmachakra text-info fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-dharmachakra text-info fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Event Artists</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Wedding"
-                />
+                <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Wedding" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-rings-wedding text-warning fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-rings-wedding text-warning fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Makeovers</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Corporate"
-                />
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Corporate" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-briefcase text-dark fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-briefcase text-dark fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Photography</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1573157941034-ba27a5097323?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Anniversary"
-                />
+                <img src="https://images.unsplash.com/photo-1573157941034-ba27a5097323?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Anniversary" />
               </div>
               <div class="card-body text-center">
                 <i class="fa-solid fa-heart text-danger fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Catering Services</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Photography"
-                />
+                <img src="https://images.unsplash.com/photo-1486916856992-e4db22c8df33?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Photography" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-camera text-secondary fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-camera text-secondary fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Music & DJ</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
+        </div>
 
-          <div class="col-6 col-md-4 col-lg-3">
-            <a href="listing.html" class="text-decoration-none" >
+        <div class="col-6 col-md-4 col-lg-3">
+          <a href="listing.html" class="text-decoration-none">
             <div class="card category-card h-100">
               <div class="card-img-wrapper img-zoom-container">
-                <img
-                  src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80"
-                  class="card-img-top"
-                  alt="Catering"
-                />
+                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80"
+                  class="card-img-top" alt="Catering" />
               </div>
               <div class="card-body text-center">
-                <i
-                  class="fa-solid fa-utensils text-primary fs-4 mb-2 d-block"
-                ></i>
+                <i class="fa-solid fa-utensils text-primary fs-4 mb-2 d-block"></i>
                 <h5 class="card-title mb-0">Invites</h5>
               </div>
             </div>
-            </a>
-          </div>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="py-5">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-md-6">
-            <div class="position-relative rounded overflow-hidden shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
-                alt="Wedding"
-                class="img-fluid w-100"
-                style="height: 300px; object-fit: cover"
-              />
-              <div
-                class="position-absolute bottom-0 start-0 w-100 p-4"
-                style="
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="position-relative rounded overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80"
+              alt="Wedding" class="img-fluid w-100" style="height: 300px; object-fit: cover" />
+            <div class="position-absolute bottom-0 start-0 w-100 p-4" style="
                   background: linear-gradient(
                     to top,
                     rgba(0, 0, 0, 0.8),
                     transparent
                   );
-                "
-              >
-                <h3 class="text-white fw-bold">Wedding Planning</h3>
-                <p class="text-white-50 mb-0">
-                  Make your special day unforgettable.
-                </p>
-              </div>
+                ">
+              <h3 class="text-white fw-bold">Wedding Planning</h3>
+              <p class="text-white-50 mb-0">
+                Make your special day unforgettable.
+              </p>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="position-relative rounded overflow-hidden shadow-sm">
-              <img
-                src="https://images.unsplash.com/photo-1530023367847-a683933f4172?auto=format&fit=crop&w=1000&q=80"
-                alt="Kids Party"
-                class="img-fluid w-100"
-                style="height: 300px; object-fit: cover"
-              />
-              <div
-                class="position-absolute bottom-0 start-0 w-100 p-4"
-                style="
+        </div>
+        <div class="col-md-6">
+          <div class="position-relative rounded overflow-hidden shadow-sm">
+            <img src="https://images.unsplash.com/photo-1530023367847-a683933f4172?auto=format&fit=crop&w=1000&q=80"
+              alt="Kids Party" class="img-fluid w-100" style="height: 300px; object-fit: cover" />
+            <div class="position-absolute bottom-0 start-0 w-100 p-4" style="
                   background: linear-gradient(
                     to top,
                     rgba(0, 0, 0, 0.8),
                     transparent
                   );
-                "
-              >
-                <h3 class="text-white fw-bold">Kids Parties</h3>
-                <p class="text-white-50 mb-0">
-                  Fun and magic for the little ones.
-                </p>
-              </div>
+                ">
+              <h3 class="text-white fw-bold">Kids Parties</h3>
+              <p class="text-white-50 mb-0">
+                Fun and magic for the little ones.
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="pt-5 pb-3">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <a
-              class="navbar-brand fw-bold fs-3 text-white d-block mb-3"
-              href="#"
-            >
-              <i class="fa-solid fa-champagne-glasses text-danger"></i> Event
-              Bucket
-            </a>
-            <p class="small">
-              We are a team of passionate event planners dedicated to creating
-              unique and memorable experiences for every client.
-            </p>
-            <div class="mt-4">
-              <a href="#" class="social-icon"
-                ><i class="fa-brands fa-facebook-f"></i
-              ></a>
-              <a href="#" class="social-icon"
-                ><i class="fa-brands fa-twitter"></i
-              ></a>
-              <a href="#" class="social-icon"
-                ><i class="fa-brands fa-instagram"></i
-              ></a>
-              <a href="#" class="social-icon"
-                ><i class="fa-brands fa-linkedin-in"></i
-              ></a>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled d-flex flex-column gap-2">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Our Services</a></li>
-              <li><a href="#">Categories</a></li>
-              <li><a href="#">Contact Us</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-6">
-            <h5>Categories</h5>
-            <ul class="list-unstyled d-flex flex-column gap-2">
-              <li><a href="#">Weddings</a></li>
-              <li><a href="#">Corporate</a></li>
-              <li><a href="#">Birthdays</a></li>
-              <li><a href="#">Decorations</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <h5>Newsletter</h5>
-            <p class="small">Subscribe to get the latest updates and offers.</p>
-            <form class="input-group mt-3">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Enter your email"
-              />
-              <button
-                class="btn btn-danger"
-                type="button"
-                style="background-color: #e62e2e; border: none"
-              >
-                Subscribe
-              </button>
-            </form>
+  <footer class="pt-5 pb-3">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <a class="navbar-brand fw-bold fs-3 text-white d-block mb-3" href="#">
+            <i class="fa-solid fa-champagne-glasses text-danger"></i> Event
+            Bucket
+          </a>
+          <p class="small">
+            We are a team of passionate event planners dedicated to creating
+            unique and memorable experiences for every client.
+          </p>
+          <div class="mt-4">
+            <a href="#" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
         </div>
 
-        <hr class="my-4 border-secondary" />
+        <div class="col-lg-2 col-md-6">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Services</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
 
-        <div class="row align-items-center">
-          <div class="col-md-6 text-center text-md-start">
-            <p class="mb-0 small">
-              &copy; 2023 Event Bucket. All rights reserved.
-            </p>
-          </div>
-          <div class="col-md-6 text-center text-md-end">
-            <a href="#" class="small text-decoration-none text-muted me-3"
-              >Privacy Policy</a
-            >
-            <a href="#" class="small text-decoration-none text-muted"
-              >Terms of Service</a
-            >
-          </div>
+        <div class="col-lg-2 col-md-6">
+          <h5>Categories</h5>
+          <ul class="list-unstyled d-flex flex-column gap-2">
+            <li><a href="#">Weddings</a></li>
+            <li><a href="#">Corporate</a></li>
+            <li><a href="#">Birthdays</a></li>
+            <li><a href="#">Decorations</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <h5>Newsletter</h5>
+          <p class="small">Subscribe to get the latest updates and offers.</p>
+          <form class="input-group mt-3">
+            <input type="email" class="form-control" placeholder="Enter your email" />
+            <button class="btn btn-danger" type="button" style="background-color: #e62e2e; border: none">
+              Subscribe
+            </button>
+          </form>
         </div>
       </div>
-    </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+      <hr class="my-4 border-secondary" />
+
+      <div class="row align-items-center">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0 small">
+            &copy; 2023 Event Bucket. All rights reserved.
+          </p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="#" class="small text-decoration-none text-muted me-3">Privacy Policy</a>
+          <a href="#" class="small text-decoration-none text-muted">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>
