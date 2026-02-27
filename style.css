@@ -40,6 +40,10 @@ body {
   background-color: transparent;
 }
 
+.btn-hover-bg:hover{
+  color: #fff !important;
+}
+
 /* ================= CATEGORY CARD STYLES ================= */
 .theme-divider {
   height: 4px;
